@@ -62,6 +62,7 @@
                     <StackPanel Grid.Row="3" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Center">
                         <RadioButton x:Name="rdHome" IsChecked="True" Content="Trang Chủ" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource home}" Click="rdHome_Click" />
                         <RadioButton x:Name="rdRooms" Content="Phòng" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource room}" Margin="2 5 0 5" Click="rdRooms_Click" />
+                        <RadioButton x:Name="rdBooking" Content="Đặt Phòng" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource booking}" Margin="2 5 0 5" Click="rdBooking_Click"  />
                         <RadioButton x:Name="rdBills" Content="Hóa Đơn" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource notes }" Click="rdBills_Click"/>
                         <RadioButton x:Name="rdUsers" Content="Người dùng" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource users}" Margin="2 5 0 5" Click="rdUsers_Click"/>
                         <RadioButton x:Name="rdStats" Content="Thống kê" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource stats}" Margin="2 5 0 5" Click="rdStats_Click" />

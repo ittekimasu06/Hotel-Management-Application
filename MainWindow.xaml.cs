@@ -65,5 +65,10 @@ namespace QuanLyKhachSan
         {
             PagesNavigation.Navigate(new System.Uri("Pages/Stats.xaml", UriKind.RelativeOrAbsolute));
         }
+
+        private void rdBooking_Click(object sender, RoutedEventArgs e)
+        {
+            PagesNavigation.Navigate(new System.Uri("Pages/Booking.xaml", UriKind.RelativeOrAbsolute));
+        }
     }
 }
