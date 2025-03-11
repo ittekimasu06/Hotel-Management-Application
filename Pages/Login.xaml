@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuanLyKhachSan.Pages"
         mc:Ignorable="d"
+        Background="Transparent"
         Title="Login" Height="450" Width="600"
         WindowStartupLocation="CenterScreen" WindowStyle="None"
         ResizeMode="NoResize">

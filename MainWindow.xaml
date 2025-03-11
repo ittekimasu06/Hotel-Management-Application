@@ -18,7 +18,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <!--Left Menu-->
-            <Border CornerRadius="8 0 0 8" Grid.Column="0" Background="{DynamicResource SecundaryBackgroundColor}">
+            <Border CornerRadius="8 0 0 8" Grid.Column="0" Background="{DynamicResource SecondaryBackgroundColor}">
                 <Grid x:Name="gridMenu" Width="60">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="60"/>
