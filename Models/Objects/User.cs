@@ -1,20 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace QuanLyKhachSan.Models.Objects
 {
-    internal class User
+    public class User
     {
+        [Key]
         public int ID { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string Name { get; set; }
 
+        [Required]
+        [MaxLength(50)]
+        public string Username { get; set; }
+
+        [Required]
+        public string PasswordHash { get; set; }
+
+        [Required]
+        [MaxLength(50)]
+        public string FullName { get; set; }
+
+        [Required]
+        [MaxLength(100)]
         public string Email { get; set; }
 
+        [MaxLength(12)]
         public string Phone { get; set; }
 
         //Role: 0 - Admin,  1 - Staff, 2 - Customer

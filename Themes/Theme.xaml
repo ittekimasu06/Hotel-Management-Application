@@ -8,6 +8,7 @@
     <!-- Primary Colors -->
     <SolidColorBrush x:Key="PrimaryBlueColor" Color="#5B7FFF"/>
     <SolidColorBrush x:Key="PrimaryGrayColor" Color="#BFBFC4"/>
+    <SolidColorBrush x:Key="PrimaryTextColor" Color="#FFFFFF"/>
 
     <!-- Secundary Colors -->
     <SolidColorBrush x:Key="SecundaryBlueColor" Color="#CEE8FB"/>
@@ -16,6 +17,8 @@
     <!-- Typograhy Colors -->
     <SolidColorBrush x:Key="TextPrimaryColor" Color="#020F16"/>
     <SolidColorBrush x:Key="TextSecundaryColor" Color="#434344"/>
+    <SolidColorBrush x:Key="ButtonMouseOverColor" Color="#0026CA"/>
+    <SolidColorBrush x:Key="ButtonPressedColor" Color="#7A7CFF"/>
 
     <!-- Icons Colors -->
     <SolidColorBrush x:Key="ActionIconColor" Color="#434344"/>

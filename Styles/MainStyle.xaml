@@ -126,7 +126,7 @@
     <!-- End: VerticalMenuStyle -->
     
     <!-- Start: TextBoxStyle -->
-    <Style x:Key="TextBoxStyle1" TargetType="{x:Type TextBox}">
+    <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
         <Setter Property="Background" Value="{DynamicResource PrimaryBackgroundColor}"/>
         <Setter Property="BorderThickness" Value="2"/>
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryBlueColor}"/>
@@ -223,6 +223,41 @@
             </Setter.Value>
         </Setter>
     </Style>
-
     <!-- End: PasswordBoxStyle -->
+    
+    <!-- Start: PrimaryButtonStyle-->
+    <Style x:Key="PrimaryButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="{DynamicResource PrimaryBlueColor}"/>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryTextColor}"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Padding" Value="12 6 12 6"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="MaxHeight" Value="40"/>
+        <Setter Property="Width" Value="Auto"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="btnBorder" CornerRadius="5"
+                            Background="{TemplateBinding Background}"
+                            Width="{TemplateBinding Width}"
+                            MaxHeight="{TemplateBinding MaxHeight}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            SnapsToDevicePixels="True"
+                            Padding="{TemplateBinding Padding}">
+                        <ContentPresenter x:Name="ContentPresenter"
+                                          Focusable="False"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Margin="{TemplateBinding Padding}"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                          RecognizesAccessKey="True"/>
+                    </Border>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!-- End: PrimaryButtonStyle-->
 </ResourceDictionary>

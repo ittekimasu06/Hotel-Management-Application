@@ -30,6 +30,33 @@
 
             </StackPanel>
             <!--Button: Close | Restore | Minimize -->
+
+            <!-- Content -->
+            <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
+                <!-- Label -->
+                <Label Content="Đăng nhập" HorizontalAlignment="Center" Margin="0,0,0,30" VerticalAlignment="Top" FontSize="30"/>
+                <!-- Label -->
+
+                <StackPanel Orientation="Vertical">
+                    <Label Content="Tên Đăng Nhập" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Margin="0,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Style="{DynamicResource TextBoxStyle}" Width="300" Tag="Tên Đăng Nhập"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <Label Content="Mật khẩu" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top"/>
+                    <PasswordBox x:Name="txtPassword" Width="300" Style="{DynamicResource PasswordBoxStyle}"/>
+                </StackPanel>
+
+                <Button x:Name="btnLogin" Content="Đăng nhập" HorizontalAlignment="Center" Margin="0,20,0,30" VerticalAlignment="Top" Style="{DynamicResource PrimaryButtonStyle}" Click="btnLogin_Click"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Label Content="Chưa có tài khoản?" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top"/>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+                        <Hyperlink NavigateUri="Register"  RequestNavigate="Hyperlink_RequestNavigate">
+                            Đăng ký
+                        </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+            </StackPanel>
+            
         </Grid>
     </Border>
 </Window>
