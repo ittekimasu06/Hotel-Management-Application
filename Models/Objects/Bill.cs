@@ -30,18 +30,33 @@ namespace QuanLyKhachSan.Models.Objects
         public string email { get; set; }
 
         //phone
+        [Required]
+        [MaxLength(12)]
+        public string phone { get; set; }
 
         //start date
+        [Required]
+        public DateTime startDate { get; set; }
 
         //end date
+        [Required]
+        public DateTime endDate { get; set; }
 
         //number adult
+        [Required]
+        public int numberAdult { get; set; }
 
         //number children
+        [Required]
+        public int numberChildren { get; set; }
 
         //number room
+        [Required]
+        public int numberRoom { get; set; }
 
         //total 
+        [Required]
+        public float total { get; set; }
 
     }
 }
