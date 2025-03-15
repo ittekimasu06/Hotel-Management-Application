@@ -10,7 +10,7 @@
 
     <Grid>
         <Border CornerRadius="5" Background="{DynamicResource SecundaryBackgroundColor}">
-            <Label Content="Bill" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+            <Button Content="Button"/>
 
         </Border>
     </Grid>
