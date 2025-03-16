@@ -1,14 +1,16 @@
 ﻿<Window x:Class="QuanLyKhachSan.Pages.Register"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuanLyKhachSan.Pages"
         mc:Ignorable="d"
         Background="Transparent"
-        Title="Register" Height="450" Width="600"
+        Title="Register" Height="450" Width="700"
         WindowStartupLocation="CenterScreen" WindowStyle="None"
-        ResizeMode="NoResize">
+        ResizeMode="NoResize"
+        Icon="/Assets/icon.ico">
     <Border CornerRadius="8" Background="{DynamicResource PrimaryBackgroundColor}">
         <Grid>
             <!--Button: Close | Restore | Minimize -->
@@ -30,32 +32,55 @@
 
             </StackPanel>
             <!--Button: Close | Restore | Minimize -->
-            
 
-            <!-- Content -->
-            <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
-            <!-- Label -->
-                <Label Content="Đăng ký" HorizontalAlignment="Center" Margin="0,0,0,10" VerticalAlignment="Top" FontSize="30"/>
-            <!-- Label -->
-                <StackPanel Orientation="Vertical">
-                    <Label Content="Họ và Tên" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="txtFullName" HorizontalAlignment="Left" Margin="0,0,0,0" Text="" Style="{DynamicResource TextBoxStyle}" Width="300" Tag="Họ và Tên"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Rectangle Grid.Column="0" Fill="{DynamicResource PrimaryBlueColor}" RadiusX="8" RadiusY="8"/>
+                <Rectangle Grid.Column="0" Fill="{DynamicResource PrimaryBlueColor}" Width="50" HorizontalAlignment="right"/>
+                    <iconPacks:PackIconBootstrapIcons Width="100"
+                                                      Height="100"
+                                                      HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center"
+                                                      Kind="PatchPlusFill" 
+                                                      Foreground="{DynamicResource PrimaryBackgroundColor}"/>
+
+
+
+                <!-- Content -->
+                <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
+                    <!-- Label -->
+                    <Label Content="Đăng ký" HorizontalAlignment="Center" Margin="0,0,0,10" VerticalAlignment="Top" FontSize="30"/>
+                    <!-- Label -->
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="Họ và Tên" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="txtFullName" HorizontalAlignment="Left" Margin="0,0,0,0" Text="" Style="{DynamicResource TextBoxStyle}" Width="300" Tag="Họ và Tên"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="Tên Đăng Nhập" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Margin="0,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Style="{DynamicResource TextBoxStyle}" Width="300" Tag="Tên Đăng Nhập"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="Email" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Margin="0,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Style="{DynamicResource TextBoxStyle}" Width="300" Tag="Email"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="Mật khẩu" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top"/>
+                        <PasswordBox x:Name="txtPassword" Width="300" Style="{DynamicResource PasswordBoxStyle}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button x:Name="btnRegister" Content="Đăng ký" HorizontalAlignment="Center" Margin="0,20,10,20" VerticalAlignment="Top" Style="{DynamicResource PrimaryButtonStyle}" Click="btnRegister_Click"/>
+                        <Button x:Name="btnBackToLogin" Content="Quay lại" HorizontalAlignment="Center" Margin="0,20,0,20" VerticalAlignment="Top" Style="{DynamicResource SecondaryButtonStyle}" Click="btnBackToLogin_Click"/>
+                    </StackPanel>
                 </StackPanel>
-                <StackPanel Orientation="Vertical">
-                    <Label Content="Tên Đăng Nhập" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Margin="0,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Style="{DynamicResource TextBoxStyle}" Width="300" Tag="Tên Đăng Nhập"/>
-                </StackPanel>
-                <StackPanel Orientation="Vertical">
-                    <Label Content="Email" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Margin="0,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Style="{DynamicResource TextBoxStyle}" Width="300" Tag="Email"/>
-                </StackPanel>
-                <StackPanel Orientation="Vertical">
-                    <Label Content="Mật khẩu" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top"/>
-                    <PasswordBox x:Name="txtPassword" Width="300" Style="{DynamicResource PasswordBoxStyle}"/>
-                </StackPanel>
-                
-                <Button x:Name="btnRegister" Content="Đăng ký" HorizontalAlignment="Center" Margin="0,20,0,20" VerticalAlignment="Top" Style="{DynamicResource PrimaryButtonStyle}" Click="btnRegister_Click"/>
-            </StackPanel>
+            </Grid>
+
+
+
+            
         </Grid>
     </Border>
 </Window>

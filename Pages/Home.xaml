@@ -5,13 +5,100 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:QuanLyKhachSan.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="1100" d:DesignWidth="800"
       Title="Page1">
 
-    <Grid>
-        <Border CornerRadius="5" Background="{DynamicResource SecundaryBackgroundColor}">
-            <Label Content="Home" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Border CornerRadius="5" Background="{DynamicResource SecondaryBackgroundColor}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="480"/>
+                    <RowDefinition Height="500"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <Label Grid.Row="0" Content="Giới thiệu về" 
+                           Style="{DynamicResource LabelStyle}" 
+                           HorizontalAlignment="Left" VerticalAlignment="Center" 
+                           Margin="40 0 0 0" Padding="10 5 0 5"
+                           BorderBrush="{DynamicResource PrimaryBlueColor}" BorderThickness="4 0 0 0"/>
+                    <Label Grid.Row="0" Content="Keisho"
+                           Style="{DynamicResource LabelStyle}"
+                           HorizontalAlignment="Left" VerticalAlignment="Center"
+                            Margin="6 0 0 0" Padding="0 10 0 10"    
+                           Foreground="{DynamicResource PrimaryBlueColor}"/>
+                </StackPanel>
 
+                <Image Grid.Row="1" Source="/Assets/Images/img1.jpg" Height="400" Margin="0 20 0 0" VerticalAlignment="Top" HorizontalAlignment="Center" />
+                <Rectangle Grid.Row="1" Fill="{DynamicResource PrimaryBlueColor}" Height="120" Width="220" VerticalAlignment="Bottom" Margin="0 0 520 80" HorizontalAlignment="Center" />
+                <TextBlock Grid.Row="1" VerticalAlignment="Bottom" Margin="0 0 520 100" HorizontalAlignment="Center">
+                    <Run Text="Keisho⋯" FontSize="25" FontWeight="DemiBold"/>
+                    <LineBreak/>
+                    <Run Text="Since 2025" FontSize="25" FontWeight="DemiBold"/>
+                    <LineBreak/>
+                    <Run Text="Tiện nghi và Sang trọng" FontSize="12" Foreground="{DynamicResource TextSecondaryColor}"/>
+                </TextBlock>
+                <TextBlock Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="600 0 0 0" FontSize="50" FontWeight="Bold" Foreground="{DynamicResource PrimaryTextColor}">
+                    <Run Text="ケ"/>
+                    <LineBreak/>
+                    <Run Text="イ"/>
+                    <LineBreak/>
+                    <Run Text="シ"/>
+                    <LineBreak/>
+                    <Run Text="ョ"/>
+                    
+                </TextBlock>
+
+                <Image Grid.Row="2" Source="/Assets/Images/img2.jpg" Height="450" Margin="0 20 380 0" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+                <Label Grid.Row="2" Content="Trải nghiệm tuyệt vời" Style="{DynamicResource LabelStyle}"  Height="50" Margin="0 0 0 0" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                    <Label.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-90"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Label.RenderTransform>
+                </Label>
+
+
+
+                <StackPanel Grid.Row="2" Orientation="Vertical" HorizontalAlignment="Center">
+                    <TextBlock Margin="360 20 0 0">
+                        <Run Text="Đa dạng" FontSize="20" FontWeight="Bold" Foreground="{DynamicResource TextSecondaryColor}"/>
+                        <Run Text="màu sắc" FontSize="20" FontWeight="Bold" Foreground="{DynamicResource PrimaryGrayColor}"/>
+                        <Run Text="và luôn" FontSize="20" FontWeight="Bold" Foreground="{DynamicResource TextSecondaryColor}"/>
+                        <LineBreak/>
+                        <Run Text="sẵn sàng." FontSize="20" FontWeight="Bold" Foreground="{DynamicResource TextSecondaryColor}"/>
+                    </TextBlock>
+                    <Rectangle Fill="{DynamicResource PrimaryBlueColor}" Height="4" Width="50" Margin="110 10 0 0"/>
+                    <TextBlock Margin="360 20 0 0" TextWrapping="Wrap" Width="300" FontSize="15">
+                        <Run Text="Với mục tiêu mang đến cho khách hàng “Trải nghiệm kỳ nghỉ tuyệt vời”, Keisho kỳ vọng trở thành nền tảng du lịch nghỉ dưỡng số 1 cho khách hàng Đông Nam Á trong 5 năm tới." 
+                             Foreground="{DynamicResource TextSecondaryColor}"/>
+                        <LineBreak/>
+                        <LineBreak/>
+                        <Run Text="Để đảm bảo cho khách hàng một “Trải nghiệm kỳ nghỉ tuyệt vời”, chúng tôi áp dụng công nghệ vào việc đọc hiểu nhu cầu của thị trường, nghiên cứu phát triển sản phẩm và gợi ý những sản phẩm và dịch vụ tốt nhất, phù hợp với từng khách hàng."
+                             Foreground="{DynamicResource TextSecondaryColor}"/>
+                        <LineBreak/>
+                        <LineBreak/>
+                        <Run Text="Đề cao tính minh bạch, tôn trọng sự khác biệt, luôn luôn đi cùng nhau và không ngừng phát triển, tất cả những điều đó đã tạo nên một Keisho đa dạng màu sắc và luôn sẵn sàng chào đón các bạn đến với chúng tôi."
+                             Foreground="{DynamicResource TextSecondaryColor}"/>
+                    </TextBlock>
+
+                </StackPanel>
+
+                <Rectangle Grid.Row="3" Fill="{DynamicResource PrimaryBlueColor}" RadiusX="5" RadiusY="5"/>
+                <Rectangle Grid.Row="3" Fill="{DynamicResource PrimaryBlueColor}" Height="20" VerticalAlignment="Top"/>
+                <!-- Copyright-->
+                <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="© 2025 Sothanhtra. All rights reserved." FontSize="15" Foreground="{DynamicResource PrimaryTextColor}"/>
+                </StackPanel>
+
+
+
+
+            </Grid>
         </Border>
-    </Grid>
+    </ScrollViewer>
 </Page>

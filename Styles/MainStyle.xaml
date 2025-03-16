@@ -320,4 +320,16 @@
         </Setter>
     </Style>
     <!-- End: SecondaryButtonStyle -->
+    
+    <!-- Start: LabelStyle-->
+    <Style x:Key="LabelStyle" TargetType="{x:Type Label}">
+        <Setter Property="Foreground" Value="{DynamicResource TextSecondaryColor}"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontFamily" Value="Segoe UI "/> 
+        <Setter Property="Padding" Value="0 0 0 5"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+    <!-- End: LabelStyle-->
 </ResourceDictionary>

@@ -77,5 +77,12 @@ namespace QuanLyKhachSan.Pages
             loginPage.Show();
             this.Close();
         }
+
+        private void btnBackToLogin_Click(object sender, RoutedEventArgs e)
+        {
+            Login loginPage = new Login();
+            loginPage.Show();
+            this.Close();
+        }
     }
 }

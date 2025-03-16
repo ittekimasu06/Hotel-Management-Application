@@ -10,7 +10,7 @@
         WindowStartupLocation="CenterScreen" WindowStyle="None"
         Background="Transparent" AllowsTransparency="True"
         ResizeMode="NoResize" WindowState="Normal"
-        >
+        Icon="/Assets/icon.ico">
     <Border CornerRadius="8" Background="{DynamicResource PrimaryBackgroundColor}">
         <Grid>
             <Grid.ColumnDefinitions>
