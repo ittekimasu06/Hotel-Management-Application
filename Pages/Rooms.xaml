@@ -11,7 +11,7 @@
     <Border CornerRadius="5" Background="{DynamicResource SecondaryBackgroundColor}">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="70"/>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>

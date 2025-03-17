@@ -5,72 +5,72 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:QuanLyKhachSan.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="520" d:DesignWidth="800"
       Title="Booking">
 
-    <Border CornerRadius="5" Background="{DynamicResource SecondaryBackgroundColor}">
-        <Grid Margin="20">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Border CornerRadius="5" Background="{DynamicResource SecondaryBackgroundColor}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-            <Label Grid.Row="0" Content="Quản lý đặt phòng" 
-               Style="{DynamicResource LabelStyle}" 
-               HorizontalAlignment="Left" VerticalAlignment="Center" 
-               Margin="40 0 0 0" Padding="10 5 0 5"
-               BorderBrush="{DynamicResource PrimaryBlueColor}" BorderThickness="4 0 0 0"/>
+                <Label Grid.Row="0" Content="Quản lý đặt phòng" 
+           Style="{DynamicResource LabelStyle}" 
+           HorizontalAlignment="Left" VerticalAlignment="Center" 
+           Margin="40 0 0 0" Padding="10 5 0 5"
+           BorderBrush="{DynamicResource PrimaryBlueColor}" BorderThickness="4 0 0 0"/>
 
-            <!-- Form nhập thông tin đặt phòng -->
-            <StackPanel Grid.Row="1" Margin="10">
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                    <TextBlock Text="Mã đặt phòng:" Width="120"/>
-                    <TextBox x:Name="BookingIdTextBox" Width="200"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                    <TextBlock Text="Ngày nhận:" Width="120"/>
-                    <DatePicker x:Name="CheckInDatePicker" Width="200"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                    <TextBlock Text="Ngày trả:" Width="120"/>
-                    <DatePicker x:Name="CheckOutDatePicker" Width="200"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                    <TextBlock Text="Loại phòng:" Width="120"/>
-                    <ComboBox x:Name="RoomTypeComboBox" Width="200">
-                        <ComboBoxItem Content="Phòng đơn"/>
-                        <ComboBoxItem Content="Phòng đôi"/>
-                        <ComboBoxItem Content="Phòng gia đình"/>
-                    </ComboBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                    <TextBlock Text="Số khách:" Width="120"/>
-                    <TextBox x:Name="GuestCountTextBox" Width="200"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                    <TextBlock Text="Yêu cầu đặc biệt:" Width="120"/>
-                    <TextBox x:Name="SpecialRequestTextBox" Width="200"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                    <Button Content="Thêm mới" Width="100" Margin="0,0,10,0" Click="AddBooking_Click"/>
-                    <Button Content="Cập nhật" Width="100" Margin="0,0,10,0" Click="UpdateBooking_Click"/>
-                    <Button Content="Xóa" Width="100" Click="DeleteBooking_Click"/>
-                </StackPanel>
-            </StackPanel>
+                <!-- Form nhập thông tin đặt phòng -->
+                <StackPanel Grid.Row="1" Margin="10">
+                    <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
+                        <TextBlock Text="Họ và tên" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
+                        <TextBox x:Name="txtHoVaTen" Width="400" Style="{DynamicResource TextBoxStyle}" Tag="Họ và Tên"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
+                        <TextBlock Text="Email" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
+                        <TextBox x:Name="txtEmail" Width="400" Style="{DynamicResource TextBoxStyle}" Tag="Email"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
+                        <TextBlock Text="Số điện thoại" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
+                        <TextBox x:Name="txtPhone" Width="400" Style="{DynamicResource TextBoxStyle}" Tag="Số điện thoại"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
+                        <TextBlock Text="Ngày nhận" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
+                        <DatePicker x:Name="dateNgayNhan" Width="200"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
+                        <TextBlock Text="Ngày trả" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
+                        <DatePicker x:Name="dateNgayTra" Width="200" Style="{DynamicResource DatePickerStyle}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
+                        <TextBlock Text="Chọn Phòng" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
+                        <ComboBox x:Name="comboboxChonPhong" Width="200">
 
-            <!-- Danh sách đặt phòng và tình trạng phòng -->
-            <DataGrid Grid.Row="2" x:Name="BookingDataGrid" AutoGenerateColumns="False" Margin="10" SelectionChanged="BookingDataGrid_SelectionChanged">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Mã đặt phòng" Binding="{Binding BookingId}" Width="*"/>
-                    <DataGridTextColumn Header="Ngày nhận" Binding="{Binding CheckInDate}" Width="*"/>
-                    <DataGridTextColumn Header="Ngày trả" Binding="{Binding CheckOutDate}" Width="*"/>
-                    <DataGridTextColumn Header="Loại phòng" Binding="{Binding RoomType}" Width="*"/>
-                    <DataGridTextColumn Header="Số khách" Binding="{Binding GuestCount}" Width="*"/>
-                    <DataGridTextColumn Header="Yêu cầu đặc biệt" Binding="{Binding SpecialRequest}" Width="*"/>
-                    <DataGridTextColumn Header="Tình trạng phòng" Binding="{Binding RoomStatus}" Width="*"/>
-                </DataGrid.Columns>
-            </DataGrid>
-        </Grid>
-    </Border>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
+                        <TextBlock Text="Số Người Lớn"  Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
+                        <TextBox x:Name="txtSoNguoiLon" Width="400" Style="{DynamicResource TextBoxStyle}" Tag="Số Người Lớn"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
+                        <TextBlock Text="Số Trẻ Em"  Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
+                        <TextBox x:Name="txtSoTreEm" Width="400" Style="{DynamicResource TextBoxStyle}" Tag="Số Người Lớn"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
+                        <TextBlock Text="Số Phòng"  Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
+                        <TextBox x:Name="txtSoPhong" Width="400" Style="{DynamicResource TextBoxStyle}" Tag="Số Phòng"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10" HorizontalAlignment="Center">
+                        <Button Content="Thêm mới" Width="120" Margin="0,0,10,0" Style="{DynamicResource PrimaryButtonStyle}"/>
+                        
+                    </StackPanel>
+                </StackPanel>
+
+                
+            </Grid>
+        </Border>
+    </ScrollViewer>
+    
 </Page>

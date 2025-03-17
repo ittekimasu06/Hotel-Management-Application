@@ -308,10 +308,12 @@
                                 Value="{DynamicResource SecondaryButtonMouseOverColor}"/>
                             <Setter TargetName="btnBorder" Property="BorderBrush" 
                                 Value="{DynamicResource PrimaryBlueColor}"/>
-                            </Trigger>
+                            <Setter Property="Foreground" Value="{DynamicResource TextSecondaryColor}"/>
+                        </Trigger>
                         <Trigger Property="IsPressed" Value="True">
                             <Setter TargetName="btnBorder" Property="Background" 
                                 Value="{DynamicResource ButtonPressedColor}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource TextSecondaryColor}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
 
@@ -332,4 +334,10 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
     </Style>
     <!-- End: LabelStyle-->
+    
+    <!-- Start: DatePickerStyle -->
+    <Style x:Key="DatePickerStyle" TargetType="{x:Type DatePicker}">
+        
+    </Style>
+    <!-- End: DatePickerStyle -->
 </ResourceDictionary>
