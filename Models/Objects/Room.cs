@@ -13,6 +13,7 @@ namespace QuanLyKhachSan.Models.Objects
         [Key]
         public int roomId { get; set; }
 
+
         //number people
         [Required]
         public int numberPeople { get; set; }

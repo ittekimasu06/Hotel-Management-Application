@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:QuanLyKhachSan.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="520" d:DesignWidth="800"
+      d:DesignHeight="1000" d:DesignWidth="800"
       Title="Booking">
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
@@ -38,7 +38,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
                         <TextBlock Text="Ngày nhận" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
-                        <DatePicker x:Name="dateNgayNhan" Width="200"/>
+                        <DatePicker x:Name="dateNgayNhan" Width="200" Style="{DynamicResource DatePickerStyle}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
                         <TextBlock Text="Ngày trả" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
@@ -66,6 +66,7 @@
                         <Button Content="Thêm mới" Width="120" Margin="0,0,10,0" Style="{DynamicResource PrimaryButtonStyle}"/>
                         
                     </StackPanel>
+                    
                 </StackPanel>
 
                 

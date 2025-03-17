@@ -50,10 +50,6 @@ namespace QuanLyKhachSan.Models.Objects
         [Required]
         public int numberChildren { get; set; }
 
-        //number room
-        [Required]
-        public int numberRoom { get; set; }
-
         //total 
         [Required]
         public float total { get; set; }
