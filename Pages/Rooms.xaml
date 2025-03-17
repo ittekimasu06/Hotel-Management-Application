@@ -3,25 +3,76 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:QuanLyKhachSan.Pages"
+      xmlns:local="clr-namespace:QuanLyKhachSan.Pages" 
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="Rooms">
-
-    <Border CornerRadius="5" Background="{DynamicResource SecondaryBackgroundColor}">
-        <Grid>
+      d:DesignHeight="520" d:DesignWidth="800"
+      Title="Rooms" Height="625">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,0,0,-74">
+        <Grid Background="{DynamicResource SecondaryBackgroundColor}" Height="594">
             <Grid.RowDefinitions>
-                <RowDefinition Height="70"/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-            <Label Grid.Row="0" Content="Phòng" 
-                   Style="{DynamicResource LabelStyle}" 
-                   HorizontalAlignment="Left" VerticalAlignment="Center" 
-                   Margin="40 0 0 0" Padding="10 5 0 5"
-                   BorderBrush="{DynamicResource PrimaryBlueColor}" BorderThickness="4 0 0 0"/>
+                <Label Grid.Row="0" Content="Quản lý phòng" 
+                    Style="{DynamicResource LabelStyle}" 
+                    HorizontalAlignment="Left" VerticalAlignment="Center" 
+                    Margin="40 0 0 0" Padding="10 5 0 5"
+                    BorderBrush="{DynamicResource PrimaryBlueColor}" BorderThickness="4 0 0 0"/>
+            <!-- Form nhập thông tin đặt phòng -->
+            <StackPanel Grid.Row="1" Margin="10,10,10,10" Grid.ColumnSpan="2">
+                <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
+                    <TextBlock Text="ID Phòng" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
+                    <TextBox x:Name="txtRoomID" Width="400" Style="{DynamicResource TextBoxStyle}" Tag="ID Phòng"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
+                    <TextBlock Text="Số người" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
+                    <TextBox x:Name="txtNumberPeople" Width="400" Style="{DynamicResource TextBoxStyle}" Tag="Số người"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
+                    <TextBlock Text="Số giường" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
+                    <TextBox x:Name="txtNumberBed" Width="400" Style="{DynamicResource TextBoxStyle}" Tag="Số giường"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
+                    <TextBlock Text="Chất lượng" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
+                    <ComboBox x:Name="comboboxChatLuong" Width="200">
+
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
+                    <TextBlock Text="Loại giường" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
+                    <TextBox x:Name="txtBedType" Width="400" Style="{DynamicResource TextBoxStyle}" Tag="Loại giường"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
+                    <TextBlock Text="Giá" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
+                    <TextBox x:Name="txtPrice" Width="400" Style="{DynamicResource TextBoxStyle}" Tag="Giá"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
+                    <TextBlock Text="Loại phòng" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
+                    <TextBox x:Name="txtRoomTypeId" Width="400" Style="{DynamicResource TextBoxStyle}" Tag="Loại phòng"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
+                    <TextBlock Text="Diện tích" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
+                    <TextBox x:Name="txtRoomArea" Width="400" Style="{DynamicResource TextBoxStyle}" Tag="Diện tích"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10" HorizontalAlignment="Center">
+                    <Button Content="Thêm mới" Width="120" Margin="0,0,10,0" Style="{DynamicResource PrimaryButtonStyle}"/>
+                    <Button Content="Cập nhật" Width="120" Margin="0,0,10,0" Style="{DynamicResource PrimaryButtonStyle}"/>
+                    <Button Content="Xóa" Width="120" Margin="0,0,10,0" Style="{DynamicResource PrimaryButtonStyle}"/>
+                </StackPanel>
+                <DataGrid x:Name="RoomsDataGrid" Grid.Row="3" AutoGenerateColumns="False" CanUserAddRows="False" Margin="10" Height="94">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding roomId}" Width="*" />
+                        <DataGridTextColumn Header="Số người" Binding="{Binding numberPeople}" Width="*" />
+                        <DataGridTextColumn Header="Số giường" Binding="{Binding numberBed}" Width="*" />
+                        <DataGridTextColumn Header="Chất lượng" Binding="{Binding quality}" Width="*"/>
+                        <DataGridTextColumn Header="Loại giường" Binding="{Binding bedType}" Width="*" />
+                        <DataGridTextColumn Header="Giá" Binding="{Binding price}" Width="*" />
+                        <DataGridTextColumn Header="Loại phòng" Binding="{Binding roomTypeId}" Width="*" />
+                        <DataGridTextColumn Header="Diện tích" Binding="{Binding roomArea}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
         </Grid>
-
-    </Border>
+    </ScrollViewer>
 </Page>
