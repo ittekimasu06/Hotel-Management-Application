@@ -354,11 +354,12 @@
                                                    Foreground="{DynamicResource TextSecondaryColor}"
                                                    Margin="5 0 0 0"
                                                    Padding="4"/>
+                                <Rectangle  Fill="{DynamicResource PrimaryBlueColor}" RadiusX="5" RadiusY="5" Height="24" Width="24" HorizontalAlignment="Right" Margin="0 0 3 0"/>
 
                                 <!-- Nút mở lịch -->
                                 <ToggleButton x:Name="PART_Button"
                                               Width="30"
-                                              Background="{DynamicResource PrimaryBlueColor}"
+                                              Background="Transparent"
                                               HorizontalAlignment="Right"
                                               BorderThickness="0"
                                               IsChecked="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}">
@@ -376,13 +377,13 @@
                         <Popup x:Name="PART_Popup"
                                Placement="Bottom"
                                PlacementTarget="{Binding ElementName=PART_Popup}"
-                               IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}">
+                               IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                               AllowsTransparency="True"
+                               PopupAnimation="Slide">
 
-                            <Calendar x:Name="PART_Calendar" 
-                                      Style="{DynamicResource CalendarStyle1}" 
-                                      CalendarButtonStyle="{DynamicResource CalendarButtonStyle1}" 
-                                      CalendarDayButtonStyle="{DynamicResource CalendarDayButtonStyle1}"
-                                      CalendarItemStyle="{DynamicResource CalendarItemStyle1}"/>
+                            <Border Background="White" BorderThickness="0" CornerRadius="5">
+                                <Calendar x:Name="PART_Calendar"/>
+                            </Border>
                         </Popup>
                     </Grid>
                 </ControlTemplate>
@@ -413,6 +414,9 @@
             </Setter.Value>
         </Setter>
         <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CalendarButtonStyle" Value="{DynamicResource CalendarButtonStyle1}"/>
+        <Setter Property="CalendarDayButtonStyle" Value="{DynamicResource CalendarDayButtonStyle1}"/>
+        <Setter Property="CalendarItemStyle" Value="{DynamicResource CalendarItemStyle1}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Calendar}">
@@ -797,4 +801,102 @@
     </Style>
 
     <!-- End: DatePickerStyle -->
+    
+    <!-- Start: ComboBoxStyle -->
+    <Style x:Key="ComboBoxStyle" TargetType="{x:Type ComboBox}">
+        <Setter Property="Background" Value="{DynamicResource PrimaryBlueColor}"/>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryTextColor}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource PrimaryBlueColor}"/>
+        <Setter Property="Height" Value="34"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="Tag" Value="Chọn giá trị"/>
+        <!-- Placeholder mặc định -->
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ComboBox">
+                    <Grid>
+                        <!-- Viền của ComboBox -->
+                        <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            SnapsToDevicePixels="True"
+                            CornerRadius="5">
+
+                            <Grid>
+                                <!-- Text hiển thị khi chưa chọn giá trị -->
+                                <TextBlock x:Name="PlaceholderText"
+                                       Text="{TemplateBinding Tag}"
+                                       Foreground="{DynamicResource PrimaryTextColor}"
+                                       VerticalAlignment="Center"
+                                       Margin="12,0,30,0"
+                                       Visibility="Collapsed"/>
+
+                                <!-- Nội dung được chọn -->
+                                <ContentPresenter x:Name="SelectedContent"
+                                              Content="{TemplateBinding SelectionBoxItem}"
+                                              VerticalAlignment="Center"
+                                              Margin="12,0,30,0"
+                                              Visibility="Visible"/>
+
+                                <!-- Nút mũi tên -->
+                                <ToggleButton x:Name="PART_DropDownButton"
+                                          Background="Transparent"
+                                          BorderThickness="0"
+                                          HorizontalAlignment="Right"
+                                          Width="30"
+                                          VerticalAlignment="Stretch"
+                                          IsChecked="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}">
+                                    <Grid>
+                                        <iconPacks:PackIconBootstrapIcons Kind="CaretDownFill"
+                                                                      Foreground="White"
+                                                                      Width="10" Height="10"
+                                                                      HorizontalAlignment="Center"
+                                                                      VerticalAlignment="Center"/>
+                                    </Grid>
+                                </ToggleButton>
+                            </Grid>
+                        </Border>
+
+                        <!-- Popup danh sách Item -->
+                        <Popup x:Name="PART_Popup"
+                               Placement="Bottom"
+                               AllowsTransparency="True"
+                               IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                               PopupAnimation="Slide"
+                               StaysOpen="False">
+
+                            <Border Background="{DynamicResource PrimaryBlueColor}"
+                                    Width="{TemplateBinding Width}"
+                                    BorderThickness="0"
+                                    CornerRadius="5">
+                                <ScrollViewer>
+                                    <ItemsPresenter/>
+                                </ScrollViewer>
+                            </Border>
+                        </Popup>
+                    </Grid>
+
+                    <!-- Trigger để ẩn Placeholder khi có giá trị -->
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Text" Value=""/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Visibility"
+                                    TargetName="PlaceholderText"
+                                    Value="Visible"/>   
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+
+
+    <!-- End: ComboBoxStyle -->
 </ResourceDictionary>

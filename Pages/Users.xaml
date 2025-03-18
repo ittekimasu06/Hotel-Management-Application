@@ -12,8 +12,8 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="70"/>
-                    <RowDefinition/>
-                    <RowDefinition/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
                 <Label Grid.Row="0" Content="Quản lý người dùng" 
@@ -45,18 +45,20 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
                         <TextBlock Text="Vai trò" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
-                        <ComboBox x:Name="comboboxRole" Width="200">
+                        <ComboBox x:Name="comboboxRole" Width="200" Style="{DynamicResource ComboBoxStyle}" Tag="Chọn vai trò">
                             <ComboBoxItem Content="Quản lý" Tag="0"/>
                             <ComboBoxItem Content="Nhân viên" Tag="1"/>
                             <ComboBoxItem Content="Khách hàng" Tag="2"/>
                         </ComboBox>
                     </StackPanel>
+                </StackPanel>
+                <StackPanel Grid.Row="2" Orientation="Vertical" VerticalAlignment="Bottom" Margin="0 0 0 20">
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,10" HorizontalAlignment="Center">
                         <Button Content="Thêm mới" Width="120" Margin="0,0,10,0" Style="{DynamicResource PrimaryButtonStyle}"/>
                         <Button Content="Cập nhật" Width="120" Margin="0,0,10,0" Style="{DynamicResource PrimaryButtonStyle}"/>
                         <Button Content="Xóa" Width="120" Margin="0,0,10,0" Style="{DynamicResource SecondaryButtonStyle}"/>
                     </StackPanel>
-                    <DataGrid x:Name="UsersDataGrid" Grid.Row="3" AutoGenerateColumns="False" CanUserAddRows="False" Margin="10" Height="200">
+                    <DataGrid x:Name="UsersDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" Margin="10" Height="200">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="*" />
                             <DataGridTextColumn Header="Tên tài khoản" Binding="{Binding Username}" Width="*" />
