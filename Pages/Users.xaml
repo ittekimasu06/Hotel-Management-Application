@@ -5,22 +5,69 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:QuanLyKhachSan.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="720" d:DesignWidth="800"
       Title="Users">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Border CornerRadius="5" Background="{DynamicResource SecondaryBackgroundColor}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
 
-    <Border CornerRadius="5" Background="{DynamicResource SecondaryBackgroundColor}">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="70"/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-
-            <Label Grid.Row="0" Content="Người dùng" 
-                   Style="{DynamicResource LabelStyle}" 
-                   HorizontalAlignment="Left" VerticalAlignment="Center" 
-                   Margin="40 0 0 0" Padding="10 5 0 5"
-                   BorderBrush="{DynamicResource PrimaryBlueColor}" BorderThickness="4 0 0 0"/>
-        </Grid>
-    </Border>
+                <Label Grid.Row="0" Content="Quản lý người dùng" 
+                               Style="{DynamicResource LabelStyle}" 
+                               HorizontalAlignment="Left" VerticalAlignment="Center" 
+                               Margin="40 0 0 0" Padding="10 5 0 5"
+                               BorderBrush="{DynamicResource PrimaryBlueColor}" BorderThickness="4 0 0 0"/>
+                <!-- Form nhập thông tin người dùng -->
+                <StackPanel Grid.Row="1" Margin="10,10,10,10" Grid.ColumnSpan="2">
+                    <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
+                        <TextBlock Text="ID" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
+                        <TextBox x:Name="txtID" Width="400" Style="{DynamicResource TextBoxStyle}" Tag="ID"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
+                        <TextBlock Text="Tên tài khoản" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
+                        <TextBox x:Name="txtUsername" Width="400" Style="{DynamicResource TextBoxStyle}" Tag="Tên tài khoản"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
+                        <TextBlock Text="Họ và tên" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
+                        <TextBox x:Name="txtFullName" Width="400" Style="{DynamicResource TextBoxStyle}" Tag="Họ và tên"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
+                        <TextBlock Text="Email" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
+                        <TextBox x:Name="txtEmail" Width="400" Style="{DynamicResource TextBoxStyle}" Tag="Email"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
+                        <TextBlock Text="Số điện thoại" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
+                        <TextBox x:Name="txtPhone" Width="400" Style="{DynamicResource TextBoxStyle}" Tag="Số điện thoại"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
+                        <TextBlock Text="Vai trò" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
+                        <ComboBox x:Name="comboboxRole" Width="200">
+                            <ComboBoxItem Content="Quản lý" Tag="0"/>
+                            <ComboBoxItem Content="Nhân viên" Tag="1"/>
+                            <ComboBoxItem Content="Khách hàng" Tag="2"/>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10" HorizontalAlignment="Center">
+                        <Button Content="Thêm mới" Width="120" Margin="0,0,10,0" Style="{DynamicResource PrimaryButtonStyle}"/>
+                        <Button Content="Cập nhật" Width="120" Margin="0,0,10,0" Style="{DynamicResource PrimaryButtonStyle}"/>
+                        <Button Content="Xóa" Width="120" Margin="0,0,10,0" Style="{DynamicResource SecondaryButtonStyle}"/>
+                    </StackPanel>
+                    <DataGrid x:Name="UsersDataGrid" Grid.Row="3" AutoGenerateColumns="False" CanUserAddRows="False" Margin="10" Height="200">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="*" />
+                            <DataGridTextColumn Header="Tên tài khoản" Binding="{Binding Username}" Width="*" />
+                            <DataGridTextColumn Header="Họ và tên" Binding="{Binding FullName}" Width="*" />
+                            <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*"/>
+                            <DataGridTextColumn Header="Số điện thoại" Binding="{Binding Phone}" Width="*" />
+                            <DataGridTextColumn Header="Vai trò" Binding="{Binding Role}" Width="*" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </ScrollViewer>
 </Page>
