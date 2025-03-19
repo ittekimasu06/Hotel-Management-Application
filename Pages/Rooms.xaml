@@ -65,7 +65,7 @@
                         <Button Content="Cập nhật" Width="120" Margin="0,0,10,0" Style="{DynamicResource PrimaryButtonStyle}"/>
                         <Button Content="Xóa" Width="120" Margin="0,0,10,0" Style="{DynamicResource SecondaryButtonStyle}"/>
                     </StackPanel>
-                    <DataGrid x:Name="RoomsDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" Margin="10" Height="200">
+                    <DataGrid x:Name="RoomsDataGrid" Margin="10" Height="200" AutoGenerateColumns="False" CanUserDeleteRows="False" CanUserSortColumns="False" CanUserAddRows="False" CanUserReorderColumns="False"  CanUserResizeColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID" Binding="{Binding roomId}" Width="*" />
                             <DataGridTextColumn Header="Số người" Binding="{Binding numberPeople}" Width="*" />

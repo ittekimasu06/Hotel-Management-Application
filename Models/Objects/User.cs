@@ -32,5 +32,19 @@ namespace QuanLyKhachSan.Models.Objects
 
         //Role: 0 - Admin,  1 - Staff, 2 - Customer
         public int Role { get; set; }
+
+        public string RoleName
+        {
+            get
+            {
+                return Role switch
+                {
+                    0 => "Quản lý",
+                    1 => "Nhân viên",
+                    2 => "Khách hàng",
+                    _ => "Không xác định"
+                };
+            }
+        }
     }
 }

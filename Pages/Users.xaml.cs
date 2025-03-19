@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
+using QuanLyKhachSan.Models.Objects;
+using QuanLyKhachSan.Models;
 
 namespace QuanLyKhachSan.Pages
 {
@@ -20,9 +23,84 @@ namespace QuanLyKhachSan.Pages
     /// </summary>
     public partial class Users : Page
     {
+        private ObservableCollection<User> users;
+        private readonly DatabaseContext _context = new DatabaseContext();
+
         public Users()
         {
             InitializeComponent();
+            LoadUsers();
+        }
+
+        private void LoadUsers()
+        {
+            users = new ObservableCollection<User>(_context.Users.ToList());
+            UsersDataGrid.ItemsSource = users;
+        }
+
+        private void BtnAddUser_Click(object sender, RoutedEventArgs e)
+        {
+            var user = new User
+            {
+                Username = txtUsername.Text,
+                FullName = txtFullName.Text,
+                Email = txtEmail.Text,
+                Phone = txtPhone.Text,
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword(txtPassword.Password),
+                Role = int.Parse(((ComboBoxItem)comboboxRole.SelectedItem).Tag.ToString())
+            }; 
+            _context.Users.Add(user);
+            _context.SaveChanges();
+            users.Add(user);
+            ClearForm();
+        }
+
+        private void BtnUpdateUser_Click(object sender, RoutedEventArgs e)
+        {
+            if (UsersDataGrid.SelectedItem is User selectedUser)
+            {
+                selectedUser.Username = txtUsername.Text;
+                selectedUser.FullName = txtFullName.Text;
+                selectedUser.Email = txtEmail.Text;
+                selectedUser.Phone = txtPhone.Text;
+                selectedUser.PasswordHash = BCrypt.Net.BCrypt.HashPassword(txtPassword.Password);
+                selectedUser.Role = int.Parse(((ComboBoxItem)comboboxRole.SelectedItem).Tag.ToString());
+                _context.SaveChanges();
+                UsersDataGrid.Items.Refresh();
+                ClearForm();
+            }
+        }
+
+        private void BtnDelUser_Click(object sender, RoutedEventArgs e)
+        {
+            if (UsersDataGrid.SelectedItem is User selectedUser)
+            {
+                _context.Users.Remove(selectedUser);
+                _context.SaveChanges();
+                users.Remove(selectedUser);
+                ClearForm();
+            }
+        }
+
+        private void UsersDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (UsersDataGrid.SelectedItem is User selectedUser)
+            {
+                txtUsername.Text = selectedUser.Username;
+                txtFullName.Text = selectedUser.FullName;
+                txtEmail.Text = selectedUser.Email;
+                txtPhone.Text = selectedUser.Phone;
+                comboboxRole.SelectedIndex = selectedUser.Role;
+            }
+        }
+
+        private void ClearForm()
+        {
+            txtUsername.Clear();
+            txtFullName.Clear();
+            txtEmail.Clear();
+            txtPhone.Clear();
+            comboboxRole.SelectedIndex = -1;
         }
     }
 }

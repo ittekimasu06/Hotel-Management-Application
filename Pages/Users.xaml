@@ -23,10 +23,7 @@
                                BorderBrush="{DynamicResource PrimaryBlueColor}" BorderThickness="4 0 0 0"/>
                 <!-- Form nhập thông tin người dùng -->
                 <StackPanel Grid.Row="1" Margin="10,10,10,10" Grid.ColumnSpan="2">
-                    <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
-                        <TextBlock Text="ID" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
-                        <TextBox x:Name="txtID" Width="400" Style="{DynamicResource TextBoxStyle}" Tag="ID"/>
-                    </StackPanel>
+                    
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
                         <TextBlock Text="Tên tài khoản" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
                         <TextBox x:Name="txtUsername" Width="400" Style="{DynamicResource TextBoxStyle}" Tag="Tên tài khoản"/>
@@ -38,6 +35,10 @@
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
                         <TextBlock Text="Email" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
                         <TextBox x:Name="txtEmail" Width="400" Style="{DynamicResource TextBoxStyle}" Tag="Email"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
+                        <TextBlock Text="Mật khẩu" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
+                        <PasswordBox x:Name="txtPassword" Width="400" Style="{DynamicResource PasswordBoxStyle}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
                         <TextBlock Text="Số điện thoại" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
@@ -54,18 +55,18 @@
                 </StackPanel>
                 <StackPanel Grid.Row="2" Orientation="Vertical" VerticalAlignment="Bottom" Margin="0 0 0 20">
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,10" HorizontalAlignment="Center">
-                        <Button Content="Thêm mới" Width="120" Margin="0,0,10,0" Style="{DynamicResource PrimaryButtonStyle}"/>
-                        <Button Content="Cập nhật" Width="120" Margin="0,0,10,0" Style="{DynamicResource PrimaryButtonStyle}"/>
-                        <Button Content="Xóa" Width="120" Margin="0,0,10,0" Style="{DynamicResource SecondaryButtonStyle}"/>
+                        <Button x:Name="btnAddUser" Content="Thêm mới" Width="120" Margin="0,0,10,0" Style="{DynamicResource PrimaryButtonStyle}" Click="BtnAddUser_Click"/>
+                        <Button x:Name="btnUpdateUser" Content="Cập nhật" Width="120" Margin="0,0,10,0" Style="{DynamicResource PrimaryButtonStyle}" Click="BtnUpdateUser_Click"/>
+                        <Button x:Name="btnDelUser" Content="Xóa" Width="120" Margin="0,0,10,0" Style="{DynamicResource SecondaryButtonStyle}" Click="BtnDelUser_Click"/>
                     </StackPanel>
-                    <DataGrid x:Name="UsersDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" Margin="10" Height="200">
+                    <DataGrid x:Name="UsersDataGrid" Margin="10" Height="200" AutoGenerateColumns="False" CanUserDeleteRows="False" CanUserSortColumns="False" CanUserAddRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" SelectionChanged="UsersDataGrid_SelectionChanged">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="*" />
+                            <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="40" />
                             <DataGridTextColumn Header="Tên tài khoản" Binding="{Binding Username}" Width="*" />
                             <DataGridTextColumn Header="Họ và tên" Binding="{Binding FullName}" Width="*" />
                             <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*"/>
-                            <DataGridTextColumn Header="Số điện thoại" Binding="{Binding Phone}" Width="*" />
-                            <DataGridTextColumn Header="Vai trò" Binding="{Binding Role}" Width="*" />
+                            <DataGridTextColumn Header="Số điện thoại" Binding="{Binding Phone}" Width="120" />
+                            <DataGridTextColumn Header="Vai trò" Binding="{Binding RoleName}" Width="120" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </StackPanel>
