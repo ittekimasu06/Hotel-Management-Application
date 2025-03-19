@@ -90,9 +90,16 @@ namespace QuanLyKhachSan.Pages
                 txtFullName.Text = selectedUser.FullName;
                 txtEmail.Text = selectedUser.Email;
                 txtPhone.Text = selectedUser.Phone;
+                txtPassword.Password = selectedUser.PasswordHash;
                 comboboxRole.SelectedIndex = selectedUser.Role;
             }
         }
+
+        private void btnRefresh_Click(object sender, RoutedEventArgs e)
+        { 
+            ClearForm();
+        }
+     
 
         private void ClearForm()
         {
@@ -100,7 +107,9 @@ namespace QuanLyKhachSan.Pages
             txtFullName.Clear();
             txtEmail.Clear();
             txtPhone.Clear();
+            txtPassword.Clear();
             comboboxRole.SelectedIndex = -1;
         }
+
     }
 }

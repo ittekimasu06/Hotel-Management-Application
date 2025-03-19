@@ -58,6 +58,7 @@
                         <Button x:Name="btnAddUser" Content="Thêm mới" Width="120" Margin="0,0,10,0" Style="{DynamicResource PrimaryButtonStyle}" Click="BtnAddUser_Click"/>
                         <Button x:Name="btnUpdateUser" Content="Cập nhật" Width="120" Margin="0,0,10,0" Style="{DynamicResource PrimaryButtonStyle}" Click="BtnUpdateUser_Click"/>
                         <Button x:Name="btnDelUser" Content="Xóa" Width="120" Margin="0,0,10,0" Style="{DynamicResource SecondaryButtonStyle}" Click="BtnDelUser_Click"/>
+                        <Button x:Name="btnRefresh" Content="Làm mới" Width="120" Margin="0,0,10,0" Style="{DynamicResource SecondaryButtonStyle}" Click="btnRefresh_Click" />
                     </StackPanel>
                     <DataGrid x:Name="UsersDataGrid" Margin="10" Height="200" AutoGenerateColumns="False" CanUserDeleteRows="False" CanUserSortColumns="False" CanUserAddRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" SelectionChanged="UsersDataGrid_SelectionChanged">
                         <DataGrid.Columns>
