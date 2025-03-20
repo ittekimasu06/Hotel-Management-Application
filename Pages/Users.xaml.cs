@@ -63,7 +63,10 @@ namespace QuanLyKhachSan.Pages
                 selectedUser.FullName = txtFullName.Text;
                 selectedUser.Email = txtEmail.Text;
                 selectedUser.Phone = txtPhone.Text;
-                selectedUser.PasswordHash = BCrypt.Net.BCrypt.HashPassword(txtPassword.Password);
+                if (txtPassword.Password != "current password")
+                {
+                    selectedUser.PasswordHash = BCrypt.Net.BCrypt.HashPassword(txtPassword.Password);
+                }
                 selectedUser.Role = int.Parse(((ComboBoxItem)comboboxRole.SelectedItem).Tag.ToString());
                 _context.SaveChanges();
                 UsersDataGrid.Items.Refresh();
@@ -89,8 +92,8 @@ namespace QuanLyKhachSan.Pages
                 txtUsername.Text = selectedUser.Username;
                 txtFullName.Text = selectedUser.FullName;
                 txtEmail.Text = selectedUser.Email;
+                txtPassword.Password = "current password";
                 txtPhone.Text = selectedUser.Phone;
-                txtPassword.Password = selectedUser.PasswordHash;
                 comboboxRole.SelectedIndex = selectedUser.Role;
             }
         }
