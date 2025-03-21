@@ -22,7 +22,7 @@ namespace QuanLyKhachSan.Models.Objects
         [Required]
         public int numberBed { get; set; }
 
-        //quality
+        //quality: 3 - 5*
         [Required]
         public int quality { get; set; }
 
@@ -36,11 +36,25 @@ namespace QuanLyKhachSan.Models.Objects
 
         //room type
         [Required]
-        public int roomTypeId { get; set; }
+        public string roomType { get; set; }
 
         //room area
         [Required]
         public float roomArea { get; set; }
+
+        public string QualityName
+        {
+            get
+            {
+                return quality switch
+                {
+                    3 => "3 ★",
+                    4 => "3 ★",
+                    5 => "5 ★",
+                    _ => "Không xác định"
+                };
+            }
+        }
 
     }
 }

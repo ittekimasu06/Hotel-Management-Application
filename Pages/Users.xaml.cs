@@ -40,6 +40,12 @@ namespace QuanLyKhachSan.Pages
 
         private void BtnAddUser_Click(object sender, RoutedEventArgs e)
         {
+            if(txtUsername == null || txtFullName == null || txtEmail == null || txtPhone == null || txtPassword == null || comboboxRole.SelectedItem == null)
+            {
+                MessageBox.Show("Hãy điền đầy đủ thông tin.");
+                return;
+            }
+
             var user = new User
             {
                 Username = txtUsername.Text,
@@ -99,7 +105,8 @@ namespace QuanLyKhachSan.Pages
         }
 
         private void btnRefresh_Click(object sender, RoutedEventArgs e)
-        { 
+        {
+            LoadUsers();
             ClearForm();
         }
      
