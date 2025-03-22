@@ -10,6 +10,7 @@
         Title="Login" Height="450" Width="700"
         WindowStartupLocation="CenterScreen" WindowStyle="None"
         ResizeMode="NoResize"
+        AllowsTransparency="True"
         Icon="/Assets/icon.ico">
 
     <Border CornerRadius="8" Background="{DynamicResource PrimaryBackgroundColor}">

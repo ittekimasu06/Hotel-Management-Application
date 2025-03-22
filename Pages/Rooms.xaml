@@ -28,10 +28,12 @@
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
                         <TextBlock Text="Số người" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
                         <TextBox x:Name="txtNumberPeople" Width="400" Style="{DynamicResource TextBoxStyle}" Tag="Số người"/>
+                        <TextBlock x:Name="txtNumberPeopleError" Text="Số người không được để trống" VerticalAlignment="Center" Margin="10 0 0 0" Foreground="Red" FontSize="12" Visibility="Collapsed"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
                         <TextBlock Text="Số giường" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
                         <TextBox x:Name="txtNumberBed" Width="400" Style="{DynamicResource TextBoxStyle}" Tag="Số giường"/>
+                        <TextBlock x:Name="txtNumberBedError" Text="Số giường không được để trống" VerticalAlignment="Center" Margin="10 0 0 0" Foreground="Red" FontSize="12" Visibility="Collapsed"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
                         <TextBlock Text="Chất lượng" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
@@ -40,6 +42,7 @@
                             <ComboBoxItem Tag="4">4 ★</ComboBoxItem>
                             <ComboBoxItem Tag="5">5 ★</ComboBoxItem>
                         </ComboBox>
+                        <TextBlock x:Name="txtQualityError" Text="Chất lượng không được để trống" VerticalAlignment="Center" Margin="10 0 0 0" Foreground="Red" FontSize="12" Visibility="Collapsed"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
                         <TextBlock Text="Loại giường" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
@@ -51,10 +54,12 @@
                             <ComboBoxItem Tag="Western King">Western King</ComboBoxItem>
                             <ComboBoxItem Tag="Super King">Super King</ComboBoxItem>
                         </ComboBox>
+                        <TextBlock x:Name="txtBedTypeError" Text="Loại giường không được để trống" VerticalAlignment="Center" Margin="10 0 0 0" Foreground="Red" FontSize="12" Visibility="Collapsed"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
                         <TextBlock Text="Giá" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
                         <TextBox x:Name="txtPrice" Width="400" Style="{DynamicResource TextBoxStyle}" Tag="Giá"/>
+                        <TextBlock x:Name="txtPriceError" Text="Giá không được để trống" VerticalAlignment="Center" Margin="10 0 0 0" Foreground="Red" FontSize="12" Visibility="Collapsed"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
                         <TextBlock Text="Loại phòng" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
@@ -64,10 +69,12 @@
                             <ComboBoxItem Tag="Deluxe">Deluxe</ComboBoxItem>
                             <ComboBoxItem Tag="Suite">Suite</ComboBoxItem>
                         </ComboBox>
+                        <TextBlock x:Name="txtRoomTypeError" Text="Loại phòng không được để trống" VerticalAlignment="Center" Margin="10 0 0 0" Foreground="Red" FontSize="12" Visibility="Collapsed"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
                         <TextBlock Text="Diện tích" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
                         <TextBox x:Name="txtRoomArea" Width="400" Style="{DynamicResource TextBoxStyle}" Tag="Diện tích"/>
+                        <TextBlock x:Name="txtRoomAreaError" Text="Diện tích không được để trống" VerticalAlignment="Center" Margin="10 0 0 0" Foreground="Red" FontSize="12" Visibility="Collapsed"/>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Grid.Row="2" Orientation="Vertical" VerticalAlignment="Bottom" Margin="0 0 0 20">

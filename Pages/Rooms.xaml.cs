@@ -40,10 +40,80 @@ namespace QuanLyKhachSan.Pages
 
         private void BtnAddRoom_Click(object sender, RoutedEventArgs e)
         {
-            if (txtNumberPeople == null || txtNumberBed == null || comboboxQuality.SelectedItem == null ||
-                comboboxBedType == null || txtPrice == null || comboboxRoomType.SelectedItem == null || txtRoomArea == null)
+            bool hasError = false;
+
+            if (string.IsNullOrWhiteSpace(txtNumberPeople.Text))
             {
-                MessageBox.Show("Hãy điền đầy đủ thông tin.");
+                txtNumberPeopleError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else
+            {
+                txtNumberPeopleError.Visibility = Visibility.Collapsed;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtNumberBed.Text))
+            {
+                txtNumberBedError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else
+            {
+                txtNumberBedError.Visibility = Visibility.Collapsed;
+            }
+
+            if (comboboxQuality.SelectedIndex == -1)
+            {
+                txtQualityError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else
+            {
+                txtQualityError.Visibility = Visibility.Collapsed;
+            }
+
+            if (comboboxBedType.SelectedIndex == -1)
+            {
+                txtBedTypeError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else
+            {
+                txtBedTypeError.Visibility = Visibility.Collapsed;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtPrice.Text))
+            {
+                txtPriceError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else
+            {
+                txtPriceError.Visibility = Visibility.Collapsed;
+            }
+
+            if (comboboxRoomType.SelectedIndex == -1)
+            {
+                txtRoomTypeError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else
+            {
+                txtRoomTypeError.Visibility = Visibility.Collapsed;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtRoomArea.Text))
+            {
+                txtRoomAreaError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else
+            {
+                txtRoomAreaError.Visibility = Visibility.Collapsed;
+            }
+
+            if (hasError)
+            {
                 return;
             }
 
@@ -96,6 +166,14 @@ namespace QuanLyKhachSan.Pages
         {
             if (RoomsDataGrid.SelectedItem is Room selectedRoom)
             {
+                txtNumberPeopleError.Visibility = Visibility.Collapsed;
+                txtNumberBedError.Visibility = Visibility.Collapsed;
+                txtQualityError.Visibility = Visibility.Collapsed;
+                txtBedTypeError.Visibility = Visibility.Collapsed;
+                txtPriceError.Visibility = Visibility.Collapsed;
+                txtRoomTypeError.Visibility = Visibility.Collapsed;
+                txtRoomAreaError.Visibility = Visibility.Collapsed;
+
                 txtNumberPeople.Text = selectedRoom.numberPeople.ToString();
                 txtNumberBed.Text = selectedRoom.numberBed.ToString();
                 comboboxQuality.SelectedIndex = selectedRoom.quality - 3; // Adjust index based on your ComboBox items
@@ -117,6 +195,13 @@ namespace QuanLyKhachSan.Pages
 
         private void ClearForm()
         {
+            txtNumberPeopleError.Visibility = Visibility.Collapsed;
+            txtNumberBedError.Visibility = Visibility.Collapsed;
+            txtQualityError.Visibility = Visibility.Collapsed;
+            txtBedTypeError.Visibility = Visibility.Collapsed;
+            txtPriceError.Visibility = Visibility.Collapsed;
+            txtRoomTypeError.Visibility = Visibility.Collapsed;
+            txtRoomAreaError.Visibility = Visibility.Collapsed;
             txtNumberPeople.Clear();
             txtNumberBed.Clear();
             comboboxQuality.SelectedIndex = -1;

@@ -1,27 +1,105 @@
-﻿<Page x:Class="QuanLyKhachSan.Pages.Bill"
+﻿<Page x:Class="QuanLyKhachSan.Pages.Bills"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:QuanLyKhachSan.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="740" d:DesignWidth="800"
       Title="Bill">
 
-    <Border CornerRadius="5" Background="{DynamicResource SecondaryBackgroundColor}">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="70"/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Border CornerRadius="5" Background="{DynamicResource SecondaryBackgroundColor}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-            <Label Grid.Row="0" Content="Hóa đơn" 
-               Style="{DynamicResource LabelStyle}" 
-               HorizontalAlignment="Left" VerticalAlignment="Center" 
-               Margin="40 0 0 0" Padding="10 5 0 5"
-               BorderBrush="{DynamicResource PrimaryBlueColor}" BorderThickness="4 0 0 0"/>
-        </Grid>
+                <Label Grid.Row="0" Content="Hóa đơn" 
+                       Style="{DynamicResource LabelStyle}" 
+                       HorizontalAlignment="Left" VerticalAlignment="Center" 
+                       Margin="40 0 0 0" Padding="10 5 0 5"
+                       BorderBrush="{DynamicResource PrimaryBlueColor}" BorderThickness="4 0 0 0"/> 
 
-    </Border>
+                <!-- Form cập nhật thông tin hóa đơn-->
+                <StackPanel Grid.Row="1" Margin="10,0,10,0">
+                    <StackPanel  Orientation="Horizontal" Margin="20,0,0,10">
+                        <TextBlock Text="Trạng thái" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
+                        <ComboBox x:Name="comboboxTrangThai" Width="200" Style="{DynamicResource ComboBoxStyle}" Tag="Chọn trạng thái">
+                            <ComboBoxItem Tag="0">Chưa thanh toán</ComboBoxItem>
+                            <ComboBoxItem Tag="1">Đã thanh toán</ComboBoxItem>
+                            <ComboBoxItem Tag="2">Đã hủy</ComboBoxItem>
+                            <ComboBoxItem Tag="3">Đã nhận phòng</ComboBoxItem>
+                            <ComboBoxItem Tag="4">Đã trả phòng</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                </StackPanel>
+
+                <Label Grid.Row="2" Content="Thông tin chi tiết" 
+                        Style="{DynamicResource LabelStyle}" 
+                        HorizontalAlignment="Left" VerticalAlignment="Center" 
+                        Margin="40 0 0 0" Padding="10 5 0 5"
+                        BorderBrush="{DynamicResource PrimaryBlueColor}" BorderThickness="4 0 0 0"/>
+
+                <StackPanel Grid.Row="3" Orientation="Vertical">
+                    <!-- Thông tin chi tiết hóa đơn -->
+                    <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
+                        <TextBlock Text="Email" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
+                        <TextBlock x:Name="txtEmail" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryBlueColor}" FontSize="15" FontWeight="Bold"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
+                        <TextBlock Text="Số điện thoại" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
+                        <TextBlock x:Name="txtPhone" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryBlueColor}" FontSize="15" FontWeight="Bold"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
+                        <TextBlock Text="Ngày nhận" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
+                        <TextBlock x:Name="txtNgayNhan" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryBlueColor}" FontSize="15" FontWeight="Bold"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
+                        <TextBlock Text="Ngày trả" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
+                        <TextBlock x:Name="txtNgayTra" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryBlueColor}" FontSize="15" FontWeight="Bold"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
+                        <TextBlock Text="Số người lớn" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
+                        <TextBlock x:Name="txtSoNguoiLon" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryBlueColor}" FontSize="15" FontWeight="Bold"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
+                        <TextBlock Text="Số trẻ em" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
+                        <TextBlock x:Name="txtSoTreEm" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryBlueColor}" FontSize="15" FontWeight="Bold"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
+                        <TextBlock Text="Tổng tiền" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
+                        <TextBlock x:Name="txtTongTien" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryBlueColor}" FontSize="15" FontWeight="Bold"/>
+                    </StackPanel>
+
+                </StackPanel>
+                
+
+                <!-- Bảng hiển thị danh sách hóa đơn -->
+
+                <StackPanel Grid.Row="4" Orientation="Vertical" VerticalAlignment="Bottom" Margin="0 0 0 20">
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10" HorizontalAlignment="Center">
+                        <Button x:Name="btnUpdateBill" Content="Cập nhật" Width="120" Margin="0,0,10,0" Style="{DynamicResource PrimaryButtonStyle}" Click="UpdateStatusButton_Click"/>
+
+                    </StackPanel>
+                    <DataGrid  x:Name="BillsDataGrid" Margin="10" Height="200" AutoGenerateColumns="False" CanUserDeleteRows="False" CanUserSortColumns="False" CanUserAddRows="False" CanUserReorderColumns="False"  CanUserResizeColumns="False" SelectionChanged="BillsDataGrid_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding billId}" Width="40"/>
+                            <DataGridTextColumn Header="Ngày tạo" Binding="{Binding createdAt}" Width="200"/>
+                            <DataGridTextColumn Header="Họ và Tên" Binding="{Binding fullName}" Width="*"/>
+                            <DataGridTextColumn Header="Trạng thái" Binding="{Binding StatusName}" Width="150"/>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+
+            </Grid>
+
+        </Border>
+    </ScrollViewer>
+        
 </Page>

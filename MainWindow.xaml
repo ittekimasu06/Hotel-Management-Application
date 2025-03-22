@@ -99,9 +99,19 @@
                 <Border Grid.Row="1" Margin="10">
                     <Frame x:Name="PagesNavigation" NavigationUIVisibility="Hidden">
                         <!-- Page Content -->
+                        
                     </Frame>
                 </Border>
 
+                <StackPanel x:Name="placeHolder" Orientation="Vertical" VerticalAlignment="Center" Margin="0,0,0,20" Grid.Row="1" Visibility="Visible">
+                    <iconPacks:PackIconBootstrapIcons Width="80"
+                                                      Height="80"
+                                                      HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center"
+                                                      Kind="CarFrontFill"
+                                                      Foreground="{DynamicResource PrimaryBlueColor}"/>
+                    <Label Grid.Row="1" Content="Chọn một trang để bắt đầu" HorizontalContentAlignment="Center"  FontSize="24" FontWeight="Bold" Foreground="{DynamicResource TextSecondaryColor}"/>
+                </StackPanel>
             </Grid>
         </Grid>
     </Border>

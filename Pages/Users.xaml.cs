@@ -40,9 +40,70 @@ namespace QuanLyKhachSan.Pages
 
         private void BtnAddUser_Click(object sender, RoutedEventArgs e)
         {
-            if(txtUsername == null || txtFullName == null || txtEmail == null || txtPhone == null || txtPassword == null || comboboxRole.SelectedItem == null)
+            bool hasError = false;
+
+            if (string.IsNullOrWhiteSpace(txtUsername.Text))
             {
-                MessageBox.Show("Hãy điền đầy đủ thông tin.");
+                txtUsernameError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else
+            {
+                txtUsernameError.Visibility = Visibility.Collapsed;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtFullName.Text))
+            {
+                txtFullNameError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else
+            {
+                txtFullNameError.Visibility = Visibility.Collapsed;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            {
+                txtEmailError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else
+            {
+                txtEmailError.Visibility = Visibility.Collapsed;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtPhone.Text))
+            {
+                txtPhoneError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else
+            {
+                txtPhoneError.Visibility = Visibility.Collapsed;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtPassword.Password))
+            {
+                txtPasswordError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else
+            {
+                txtPasswordError.Visibility = Visibility.Collapsed;
+            }
+
+            if (comboboxRole.SelectedItem == null)
+            {
+                txtRoleError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else
+            {
+                txtRoleError.Visibility = Visibility.Collapsed;
+            }
+
+            if (hasError)
+            {
                 return;
             }
 
@@ -95,6 +156,13 @@ namespace QuanLyKhachSan.Pages
         {
             if (UsersDataGrid.SelectedItem is User selectedUser)
             {
+                txtUsernameError.Visibility = Visibility.Collapsed;
+                txtFullNameError.Visibility = Visibility.Collapsed;
+                txtEmailError.Visibility = Visibility.Collapsed;
+                txtPhoneError.Visibility = Visibility.Collapsed;
+                txtPasswordError.Visibility = Visibility.Collapsed;
+                txtRoleError.Visibility = Visibility.Collapsed;
+
                 txtUsername.Text = selectedUser.Username;
                 txtFullName.Text = selectedUser.FullName;
                 txtEmail.Text = selectedUser.Email;
@@ -119,6 +187,12 @@ namespace QuanLyKhachSan.Pages
             txtPhone.Clear();
             txtPassword.Clear();
             comboboxRole.SelectedIndex = -1;
+            txtUsernameError.Visibility = Visibility.Collapsed;
+            txtFullNameError.Visibility = Visibility.Collapsed;
+            txtEmailError.Visibility = Visibility.Collapsed;
+            txtPhoneError.Visibility = Visibility.Collapsed;
+            txtPasswordError.Visibility = Visibility.Collapsed;
+            txtRoleError.Visibility = Visibility.Collapsed;
         }
 
     }

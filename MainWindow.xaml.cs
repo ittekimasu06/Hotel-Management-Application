@@ -42,32 +42,37 @@ namespace QuanLyKhachSan
 
         private void rdHome_Click(object sender, RoutedEventArgs e)
         {
-            // PagesNavigation.Navigate(new HomePage());
+            placeHolder.Visibility = Visibility.Collapsed;
             PagesNavigation.Navigate(new System.Uri("Pages/Home.xaml", UriKind.RelativeOrAbsolute));
         }
 
         private void rdRooms_Click(object sender, RoutedEventArgs e)
         {
+            placeHolder.Visibility = Visibility.Collapsed;
             PagesNavigation.Navigate(new System.Uri("Pages/Rooms.xaml", UriKind.RelativeOrAbsolute));
         }
 
         private void rdBills_Click(object sender, RoutedEventArgs e)
         {
-           PagesNavigation.Navigate(new System.Uri("Pages/Bills.xaml", UriKind.RelativeOrAbsolute));
+            placeHolder.Visibility = Visibility.Collapsed;
+            PagesNavigation.Navigate(new System.Uri("Pages/Bills.xaml", UriKind.RelativeOrAbsolute));
         }
 
         private void rdUsers_Click(object sender, RoutedEventArgs e)
         {
+            placeHolder.Visibility = Visibility.Collapsed;
             PagesNavigation.Navigate(new System.Uri("Pages/Users.xaml", UriKind.RelativeOrAbsolute));
         }
 
         private void rdStats_Click(object sender, RoutedEventArgs e)
         {
+            placeHolder.Visibility = Visibility.Collapsed;
             PagesNavigation.Navigate(new System.Uri("Pages/Stats.xaml", UriKind.RelativeOrAbsolute));
         }
 
         private void rdBooking_Click(object sender, RoutedEventArgs e)
         {
+            placeHolder.Visibility = Visibility.Collapsed;
             PagesNavigation.Navigate(new System.Uri("Pages/Booking.xaml", UriKind.RelativeOrAbsolute));
         }
     }
