@@ -84,13 +84,15 @@
                 <StackPanel Grid.Row="4" Orientation="Vertical" VerticalAlignment="Bottom" Margin="0 0 0 20">
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,10" HorizontalAlignment="Center">
                         <Button x:Name="btnUpdateBill" Content="Cập nhật" Width="120" Margin="0,0,10,0" Style="{DynamicResource PrimaryButtonStyle}" Click="UpdateStatusButton_Click"/>
-
+                        <Button x:Name="btnRefresh" Content="Làm mới" VerticalAlignment="Center" Width="120" Margin="0,0,10,0" Style="{DynamicResource SecondaryButtonStyle}" Click="BtnRefresh_Click"/>
+                        <Button x:Name="btnDelBill" Content="Xóa" VerticalAlignment="Center" Width="120" Margin="0,0,10,0" Style="{DynamicResource SecondaryButtonStyle}" Click="BtnDelBill_Click"/>
                     </StackPanel>
                     <DataGrid  x:Name="BillsDataGrid" Margin="10" Height="200" AutoGenerateColumns="False" CanUserDeleteRows="False" CanUserSortColumns="False" CanUserAddRows="False" CanUserReorderColumns="False"  CanUserResizeColumns="False" SelectionChanged="BillsDataGrid_SelectionChanged">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID" Binding="{Binding billId}" Width="40"/>
                             <DataGridTextColumn Header="Ngày tạo" Binding="{Binding createdAt}" Width="200"/>
                             <DataGridTextColumn Header="Họ và Tên" Binding="{Binding fullName}" Width="*"/>
+                            <DataGridTextColumn Header="Phòng số" Binding="{Binding roomId}" Width="*"/>
                             <DataGridTextColumn Header="Trạng thái" Binding="{Binding StatusName}" Width="150"/>
 
                         </DataGrid.Columns>

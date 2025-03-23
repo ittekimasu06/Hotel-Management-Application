@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using QuanLyKhachSan.Models.Objects;
 using QuanLyKhachSan.Models;
+using System.Text.RegularExpressions;
 
 namespace QuanLyKhachSan.Pages
 {
@@ -47,6 +48,12 @@ namespace QuanLyKhachSan.Pages
                 txtUsernameError.Visibility = Visibility.Visible;
                 hasError = true;
             }
+            else if (txtUsername.Text.Length >= 50)
+            {
+                txtUsernameError.Visibility = Visibility.Visible;
+                txtUsernameError.Text = "Tên đăng nhập quá 50 ký tự";
+                hasError = true;
+            }
             else
             {
                 txtUsernameError.Visibility = Visibility.Collapsed;
@@ -55,6 +62,12 @@ namespace QuanLyKhachSan.Pages
             if (string.IsNullOrWhiteSpace(txtFullName.Text))
             {
                 txtFullNameError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else if (txtFullName.Text.Length >= 50)
+            {
+                txtFullNameError.Visibility = Visibility.Visible;
+                txtFullNameError.Text = "Họ tên quá 50 ký tự";
                 hasError = true;
             }
             else
@@ -67,6 +80,18 @@ namespace QuanLyKhachSan.Pages
                 txtEmailError.Visibility = Visibility.Visible;
                 hasError = true;
             }
+            else if (txtEmail.Text.Length >= 100)
+            {
+                txtEmailError.Visibility = Visibility.Visible;
+                txtEmailError.Text = "Email quá 100 ký tự!";
+                hasError = true;
+            }
+            else if (!Regex.IsMatch(txtEmail.Text, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"))
+            {
+                txtEmailError.Visibility = Visibility.Visible;
+                txtEmailError.Text = "Email không hợp lệ!";
+                hasError = true;
+            }
             else
             {
                 txtEmailError.Visibility = Visibility.Collapsed;
@@ -77,6 +102,18 @@ namespace QuanLyKhachSan.Pages
                 txtPhoneError.Visibility = Visibility.Visible;
                 hasError = true;
             }
+            else if (txtPhone.Text.Length >= 12)
+            {
+                txtPhoneError.Visibility = Visibility.Visible;
+                txtPhoneError.Text = "Số điện thoại quá 12 ký tự!";
+                hasError = true;
+            }
+            else if (!Regex.IsMatch(txtPhone.Text, @"^0\d{9,10}$"))
+            {
+                txtPhoneError.Visibility = Visibility.Visible;
+                txtPhoneError.Text = "Số điện thoại không hợp lệ!";
+                hasError = true;
+            }
             else
             {
                 txtPhoneError.Visibility = Visibility.Collapsed;
@@ -85,6 +122,12 @@ namespace QuanLyKhachSan.Pages
             if (string.IsNullOrWhiteSpace(txtPassword.Password))
             {
                 txtPasswordError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else if (txtPassword.Password.Length < 6)
+            {
+                txtPasswordError.Visibility = Visibility.Visible;
+                txtPasswordError.Text = "Mật khẩu phải có ít nhất 6 ký tự!";
                 hasError = true;
             }
             else
@@ -115,7 +158,10 @@ namespace QuanLyKhachSan.Pages
                 Phone = txtPhone.Text,
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(txtPassword.Password),
                 Role = int.Parse(((ComboBoxItem)comboboxRole.SelectedItem).Tag.ToString())
-            }; 
+            };
+            Notification notification = new Notification("Thành công", "Tạo tài khoản thành công");
+            notification.Owner = Window.GetWindow(this);
+            notification.Show();
             _context.Users.Add(user);
             _context.SaveChanges();
             users.Add(user);
@@ -135,6 +181,9 @@ namespace QuanLyKhachSan.Pages
                     selectedUser.PasswordHash = BCrypt.Net.BCrypt.HashPassword(txtPassword.Password);
                 }
                 selectedUser.Role = int.Parse(((ComboBoxItem)comboboxRole.SelectedItem).Tag.ToString());
+                Notification notification = new Notification("Thành công", "Cập nhật tài khoản thành công");
+                notification.Owner = Window.GetWindow(this);
+                notification.Show();
                 _context.SaveChanges();
                 UsersDataGrid.Items.Refresh();
                 ClearForm();
@@ -145,6 +194,9 @@ namespace QuanLyKhachSan.Pages
         {
             if (UsersDataGrid.SelectedItem is User selectedUser)
             {
+                Notification notification = new Notification("Thành công", "Xóa tài khoản thành công");
+                notification.Owner = Window.GetWindow(this);
+                notification.Show();
                 _context.Users.Remove(selectedUser);
                 _context.SaveChanges();
                 users.Remove(selectedUser);

@@ -128,7 +128,7 @@
     
     <!-- Start: TextBoxStyle -->
     <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
-        <Setter Property="Background" Value="{DynamicResource PrimaryBackgroundColor}"/>
+        <Setter Property="Background" Value="{DynamicResource SecondaryBackgroundColor}"/>
         <Setter Property="BorderThickness" Value="2"/>
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryBlueColor}"/>
         <Setter Property="Padding" Value="6 3"/>
@@ -183,7 +183,7 @@
     
     <!-- Start: PasswordBoxStyle -->
     <Style x:Key="PasswordBoxStyle" TargetType="{x:Type PasswordBox}">
-        <Setter Property="Background" Value="{DynamicResource PrimaryBackgroundColor}"/>
+        <Setter Property="Background" Value="{DynamicResource SecondaryBackgroundColor}"/>
         <Setter Property="BorderThickness" Value="2"/>
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryBlueColor}"/>
         <Setter Property="Padding" Value="6 3"/>

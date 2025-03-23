@@ -46,6 +46,12 @@ namespace QuanLyKhachSan.Pages
             {
                 txtNumberPeopleError.Visibility = Visibility.Visible;
                 hasError = true;
+            } 
+            else if (!int.TryParse(txtNumberPeople.Text, out int numberPeople) || numberPeople < 1)
+            {
+                txtNumberPeopleError.Visibility = Visibility.Visible;
+                txtNumberPeopleError.Text = "Số người phải là số nguyên dương";
+                hasError = true;
             }
             else
             {
@@ -55,6 +61,12 @@ namespace QuanLyKhachSan.Pages
             if (string.IsNullOrWhiteSpace(txtNumberBed.Text))
             {
                 txtNumberBedError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else if (!int.TryParse(txtNumberBed.Text, out int numberBed) || numberBed < 1)
+            {
+                txtNumberBedError.Visibility = Visibility.Visible;
+                txtNumberBedError.Text = "Số giường phải là số nguyên dương";
                 hasError = true;
             }
             else
@@ -87,6 +99,12 @@ namespace QuanLyKhachSan.Pages
                 txtPriceError.Visibility = Visibility.Visible;
                 hasError = true;
             }
+            else if (!float.TryParse(txtPrice.Text, out float price) || price < 0)
+            {
+                txtPriceError.Visibility = Visibility.Visible;
+                txtPriceError.Text = "Giá phải là số dương";
+                hasError = true;
+            }
             else
             {
                 txtPriceError.Visibility = Visibility.Collapsed;
@@ -105,6 +123,12 @@ namespace QuanLyKhachSan.Pages
             if (string.IsNullOrWhiteSpace(txtRoomArea.Text))
             {
                 txtRoomAreaError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else if (!float.TryParse(txtRoomArea.Text, out float roomArea) || roomArea < 0)
+            {
+                txtRoomAreaError.Visibility = Visibility.Visible;
+                txtRoomAreaError.Text = "Diện tích phải là số dương";
                 hasError = true;
             }
             else
@@ -131,6 +155,9 @@ namespace QuanLyKhachSan.Pages
             _context.SaveChanges();
             rooms.Add(room);
             ClearForm();
+            Notification notification = new Notification("Thành công", "Tạo phòng thành công");
+            notification.Owner = Window.GetWindow(this);
+            notification.Show();
         }
 
 
@@ -148,6 +175,9 @@ namespace QuanLyKhachSan.Pages
                 _context.SaveChanges();
                 LoadRooms();
                 ClearForm();
+                Notification notification = new Notification("Thành công", "Cập nhật phòng thành công");
+                notification.Owner = Window.GetWindow(this);
+                notification.Show();
             }
         }
 
@@ -155,6 +185,14 @@ namespace QuanLyKhachSan.Pages
         {
             if (RoomsDataGrid.SelectedItem is Room selectedRoom)
             {
+                // error when delete room that is in use
+                if (_context.Bills.Any(bill => bill.roomId == selectedRoom.roomId))
+                {
+                    NotificationError notification = new NotificationError("Thất bại", "Không thể xóa phòng đang sử dụng");
+                    notification.Owner = Window.GetWindow(this);
+                    notification.Show();
+                    return;
+                }
                 _context.Rooms.Remove(selectedRoom);
                 _context.SaveChanges();
                 rooms.Remove(selectedRoom);

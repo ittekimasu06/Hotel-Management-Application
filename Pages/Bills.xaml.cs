@@ -61,7 +61,35 @@ namespace QuanLyKhachSan.Pages
                 selectedBill.status = int.Parse(((ComboBoxItem)comboboxTrangThai.SelectedItem).Tag.ToString());
                 _context.SaveChanges();
                 LoadBills();
+                Notification notification = new Notification("Thành công", "Cập nhật hóa đơn thành công");
+                notification.Owner = Window.GetWindow(this);
+                notification.Show();
             }
+        }
+
+        private void BtnDelBill_Click(object sender, RoutedEventArgs e)
+        {
+            if (BillsDataGrid.SelectedItem is Bill selectedBill)
+            {
+                _context.Bills.Remove(selectedBill);
+                _context.SaveChanges();
+                LoadBills();
+                Notification notification = new Notification("Thành công", "Xóa hóa đơn thành công");
+                notification.Owner = Window.GetWindow(this);
+                notification.Show();
+            }
+        }
+
+        private void BtnRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            comboboxTrangThai.SelectedIndex = -1;
+            txtEmail.Text = "";
+            txtPhone.Text = "";
+            txtNgayNhan.Text = "";
+            txtNgayTra.Text = "";
+            txtSoNguoiLon.Text = "";
+            txtSoTreEm.Text = "";
+            txtTongTien.Text = "";
         }
     }
 }

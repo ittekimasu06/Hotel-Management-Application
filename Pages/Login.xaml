@@ -58,11 +58,17 @@
                     <!-- Label -->
 
                     <StackPanel Orientation="Vertical">
-                        <Label Content="Tên Đăng Nhập" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top"/>
+                        <Grid>
+                            <Label Content="Tên Đăng Nhập" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top"/>
+                            <TextBlock x:Name="txtUsernameError" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,0,0" Text="Tên đăng nhập không được để trống" Foreground="Red" Visibility="Collapsed"/>
+                        </Grid>
                         <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Margin="0,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Style="{DynamicResource TextBoxStyle}" Width="300" Tag="Tên Đăng Nhập"/>
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
-                        <Label Content="Mật khẩu" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top"/>
+                        <Grid>
+                            <Label Content="Mật khẩu" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top"/>
+                            <TextBlock x:Name="txtPasswordError" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,0,0" Text="Mật khẩu không được để trống" Foreground="Red" Visibility="Collapsed"/>
+                        </Grid>
                         <PasswordBox x:Name="txtPassword" Width="300" Style="{DynamicResource PasswordBoxStyle}"/>
                     </StackPanel>
 

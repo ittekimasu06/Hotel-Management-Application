@@ -17,13 +17,14 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
+
             <!--Left Menu-->
             <Border CornerRadius="8 0 0 8" Grid.Column="0" Background="{DynamicResource SecondaryBackgroundColor}">
                 <Grid x:Name="gridMenu" Width="60">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="60"/>
                         <RowDefinition Height="80"/>
-                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
                     <!-- Logo -->
@@ -67,13 +68,34 @@
                         <RadioButton x:Name="rdUsers" Content="Người dùng" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource users}" Margin="2 5 0 5" Click="rdUsers_Click"/>
                         <RadioButton x:Name="rdStats" Content="Thống kê" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource stats}" Margin="2 5 0 5" Click="rdStats_Click" />
                     </StackPanel>
+
+                    <StackPanel Orientation="Vertical" Grid.Row="3" VerticalAlignment="Bottom" Width="200" Margin="0,0,0,0">
+                        <RadioButton x:Name="rdLogout" Content="Đăng xuất" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource logout}" Margin="4 0 0 0" Click="rdLogout_Click"/>
+                        <StackPanel Grid.Row="3" VerticalAlignment="Bottom" Orientation="Horizontal" Width="200" Margin="0,0,0,20">
+                            <Grid>
+                                <Ellipse Width="40" Height="40" Fill="{DynamicResource PrimaryBlueColor}" Margin="10,0,0,0"/>
+                                <iconPacks:PackIconBootstrapIcons Width="30" Height="30" 
+                                            HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center" 
+                                            Margin="10 0 0 0"
+                                            Kind="PersonCircle" 
+                                            Foreground="White"/>
+                            </Grid>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock x:Name="txtUsername" Foreground="{DynamicResource TextSecondaryColor}" FontSize="14" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="10,0,0,10"/>
+                                <TextBlock x:Name="txtEmail" Foreground="{DynamicResource PrimaryGrayColor}" FontSize="11" FontWeight="Regular"  HorizontalAlignment="Left" Margin="10,-10,0,0"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                    
                 </Grid>
             </Border>
 
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="60"/>
-                    <RowDefinition/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
                 <!--Button: Close | Restore | Minimize -->
@@ -96,21 +118,34 @@
                 </StackPanel>
                 <!--Button: Close | Restore | Minimize -->
 
-                <Border Grid.Row="1" Margin="10">
+                <Border Grid.Row="1" Margin="10,4,10,4" CornerRadius="5" Background="{DynamicResource PrimaryBlueColor}">
+                    <Grid Margin="0,0,10,0">
+                        <TextBlock Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0">
+                            <Run Text="Hệ thống quản lý khách sạn Keisho - "/>
+                            <Run Text="v1.0" FontWeight="Bold"/>
+                        </TextBlock>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <TextBlock Text="Nhóm 2 - N08" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Bold" Margin="10,0,0,0"/>
+                            <Image Source="/Assets/Images/phenikaa.png" Width="100" Height="20" Margin="10,4,0,0"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <Border Grid.Row="2" Margin="10,0,10,10">
                     <Frame x:Name="PagesNavigation" NavigationUIVisibility="Hidden">
                         <!-- Page Content -->
-                        
+
                     </Frame>
                 </Border>
 
-                <StackPanel x:Name="placeHolder" Orientation="Vertical" VerticalAlignment="Center" Margin="0,0,0,20" Grid.Row="1" Visibility="Visible">
-                    <iconPacks:PackIconBootstrapIcons Width="80"
-                                                      Height="80"
+                <StackPanel Grid.Row="2" x:Name="placeHolder" Orientation="Vertical" VerticalAlignment="Center" Margin="0,0,0,20" Visibility="Visible">
+                    <iconPacks:PackIconBootstrapIcons Width="50"
+                                                      Height="50"
                                                       HorizontalAlignment="Center"
                                                       VerticalAlignment="Center"
                                                       Kind="CarFrontFill"
                                                       Foreground="{DynamicResource PrimaryBlueColor}"/>
-                    <Label Grid.Row="1" Content="Chọn một trang để bắt đầu" HorizontalContentAlignment="Center"  FontSize="24" FontWeight="Bold" Foreground="{DynamicResource TextSecondaryColor}"/>
+                    <Label Content="Chọn một trang để bắt đầu" HorizontalContentAlignment="Center"  FontSize="16" FontWeight="Bold" Foreground="{DynamicResource TextSecondaryColor}"/>
                 </StackPanel>
             </Grid>
         </Grid>

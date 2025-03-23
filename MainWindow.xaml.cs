@@ -22,6 +22,13 @@ namespace QuanLyKhachSan
             InitializeComponent();
         }
 
+        public MainWindow(string username, string email)
+        {
+            InitializeComponent();
+            SetUsername(username);
+            SetEmail(email);
+        }
+
         private void btnClose_Click(object sender, RoutedEventArgs e) 
         { 
             Close();
@@ -74,6 +81,24 @@ namespace QuanLyKhachSan
         {
             placeHolder.Visibility = Visibility.Collapsed;
             PagesNavigation.Navigate(new System.Uri("Pages/Booking.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        //set txtUsername.Text = currently logged in user
+        public void SetUsername(string username)
+        {
+            txtUsername.Text = username;
+        }
+        //set txtEmail.Text = currently logged in user
+        public void SetEmail(string email)
+        {
+            txtEmail.Text = email;
+        }
+
+        private void rdLogout_Click(object sender, RoutedEventArgs e)
+        {
+            var login = new Login();
+            login.Show();
+            Close();
         }
     }
 }

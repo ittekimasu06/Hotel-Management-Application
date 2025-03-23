@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -53,15 +54,88 @@ namespace QuanLyKhachSan.Pages
             string email = txtEmail.Text;
             string password = txtPassword.Password;
 
-            if (string.IsNullOrWhiteSpace(fullname) || (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password)))
+            bool hasError = false;
+
+            if (string.IsNullOrWhiteSpace(fullname))
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!");
+                txtFullNameError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else if (fullname.Length >= 50)
+            {
+                txtFullNameError.Visibility = Visibility.Visible;
+                txtFullNameError.Text = "Họ tên quá 50 ký tự!";
+                hasError = true;
+            }
+            else
+            {
+                txtFullNameError.Visibility = Visibility.Collapsed;
+            }
+
+            if (string.IsNullOrWhiteSpace(username))
+            {
+                txtUsernameError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else if (username.Length >= 50)
+            {
+                txtUsernameError.Visibility = Visibility.Visible;
+                txtUsernameError.Text = "Tên đăng nhập quá 50 ký tự!";
+                hasError = true;
+            }
+            else
+            {
+                txtUsernameError.Visibility = Visibility.Collapsed;
+            }
+
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                txtEmailError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else if(email.Length >= 100)
+            {
+                txtEmailError.Visibility = Visibility.Visible;
+                txtEmailError.Text = "Email quá 100 ký tự!";
+                hasError = true;
+            }
+            else if (!Regex.IsMatch(txtEmail.Text, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"))
+            {
+                txtEmailError.Visibility = Visibility.Visible;
+                txtEmailError.Text = "Email không hợp lệ!";
+                hasError = true;
+            }
+            else
+            {
+                txtEmailError.Visibility = Visibility.Collapsed;
+            }
+
+            if (string.IsNullOrWhiteSpace(password))
+            {
+                txtPasswordError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else if(password.Length < 6)
+            {
+                txtPasswordError.Visibility = Visibility.Visible;
+                txtPasswordError.Text = "Mật khẩu phải có ít nhất 6 ký tự!";
+                hasError = true;
+            }
+            else
+            {
+                txtPasswordError.Visibility = Visibility.Collapsed;
+            }
+
+            if (hasError)
+            {
                 return;
             }
 
             if (_context.Users.Any(u => u.Username == username))
             {
-                MessageBox.Show("Tài khoản đã tồn tại!");
+                NotificationError notification = new NotificationError("Thất bại", "Tài khoản đã tồn tại");
+                notification.Owner = this;
+                notification.Show();
                 return;
             }
 
@@ -71,7 +145,9 @@ namespace QuanLyKhachSan.Pages
             _context.Users.Add(newUser);
             _context.SaveChanges();
 
-            MessageBox.Show("Đăng ký thành công!");
+            Notification notification1 = new Notification("Thành công", "Đăng ký thành công");
+            notification1.Owner = this;
+            notification1.Show();
 
             Login loginPage = new Login();
             loginPage.Show();

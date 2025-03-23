@@ -29,22 +29,27 @@
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
                         <TextBlock Text="Họ và tên" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
                         <TextBox x:Name="txtHoVaTen" Width="400" Style="{DynamicResource TextBoxStyle}" Tag="Họ và Tên"/>
+                        <TextBlock x:Name="txtHoVaTenError" Text="Họ và tên không được để trống" VerticalAlignment="Center" Margin="10 0 0 0" Foreground="Red" FontSize="12" Visibility="Collapsed"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
                         <TextBlock Text="Email" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
                         <TextBox x:Name="txtEmail" Width="400" Style="{DynamicResource TextBoxStyle}" Tag="Email"/>
+                        <TextBlock x:Name="txtEmailError" Text="Email không được để trống" VerticalAlignment="Center" Margin="10 0 0 0" Foreground="Red" FontSize="12" Visibility="Collapsed"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
                         <TextBlock Text="Số điện thoại" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
                         <TextBox x:Name="txtPhone" Width="400" Style="{DynamicResource TextBoxStyle}" Tag="Số điện thoại"/>
+                        <TextBlock x:Name="txtPhoneError" Text="Số điện thoại không được để trống" VerticalAlignment="Center" Margin="10 0 0 0" Foreground="Red" FontSize="12" Visibility="Collapsed"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
                         <TextBlock Text="Ngày nhận" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
                         <DatePicker x:Name="dateNgayNhan" Width="200" Style="{DynamicResource DatePickerStyle}" CalendarStyle="{DynamicResource CalendarStyle1}"/>
+                        <TextBlock x:Name="dateNgayNhanError" Text="Ngày nhận không được để trống" VerticalAlignment="Center" Margin="10 0 0 0" Foreground="Red" FontSize="12" Visibility="Collapsed"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
                         <TextBlock Text="Ngày trả" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
                         <DatePicker x:Name="dateNgayTra" Width="200" Style="{DynamicResource DatePickerStyle}" CalendarStyle="{DynamicResource CalendarStyle1}"/>
+                        <TextBlock x:Name="dateNgayTraError" Text="Ngày trả không được để trống" VerticalAlignment="Center" Margin="10 0 0 0" Foreground="Red" FontSize="12" Visibility="Collapsed"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
                         <TextBlock Text="Chọn Phòng" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
@@ -61,18 +66,24 @@
                                        Foreground="{DynamicResource PrimaryBackgroundColor}" />
                             <TextBlock x:Name="txtPhong" Text="Chưa chọn phòng" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}"  Margin="20,0,0,0"/> 
                         </Grid>
+                        <TextBlock x:Name="txtPhongError" Text="Phòng không được để trống" VerticalAlignment="Center" Margin="10 0 0 0" Foreground="Red" FontSize="12" Visibility="Collapsed"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
                         <TextBlock Text="Số Người Lớn"  Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
                         <TextBox x:Name="txtSoNguoiLon" Width="400" Style="{DynamicResource TextBoxStyle}" Tag="Số Người Lớn"/>
+                        <TextBlock x:Name="txtSoNguoiLonError" Text="Sô người lớn không được để trống" VerticalAlignment="Center" Margin="10 0 0 0" Foreground="Red" FontSize="12" Visibility="Collapsed"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
                         <TextBlock Text="Số Trẻ Em"  Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
                         <TextBox x:Name="txtSoTreEm" Width="400" Style="{DynamicResource TextBoxStyle}" Tag="Số Trẻ Em"/>
+                        <TextBlock x:Name="txtSoTreEmError" Text="Số trẻ em không được để trống" VerticalAlignment="Center" Margin="10 0 0 0" Foreground="Red" FontSize="12" Visibility="Collapsed"/>
                     </StackPanel>
 
                 </StackPanel>
-                <Button Grid.Row="2" x:Name="btnDatPhong" Content="Đặt phòng" VerticalAlignment="Bottom" Width="120" Margin="0,0,0,20" Style="{DynamicResource PrimaryButtonStyle}" Click="BtnDatPhong_Click"/>
+                <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center" Margin="20">
+                    <Button Grid.Row="2" x:Name="btnDatPhong" Content="Đặt phòng" VerticalAlignment="Center" Width="120" Margin="0,0,10,0" Style="{DynamicResource PrimaryButtonStyle}" Click="BtnDatPhong_Click"/>
+                    <Button Grid.Row="2" x:Name="btnRefresh" Content="Làm mới" VerticalAlignment="Center" Width="120" Margin="0,0,10,0" Style="{DynamicResource SecondaryButtonStyle}" Click="BtnRefresh_Click"/>
+                </StackPanel>
 
                 
             </Grid>
