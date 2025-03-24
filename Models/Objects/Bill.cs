@@ -55,12 +55,11 @@ namespace QuanLyKhachSan.Models.Objects
 
         //total = price * (end - start)
         [Required]
-        public float total { get; set; }
+        public float? total { get; set; }
 
         //status: 0 - Unpaid, 1 - Paid, 2 - Cancel, 3 - Checkin, 4 - Checkout
         [Required]
         public int status { get; set; }
-
 
         private Room GetRoomById(int roomId)
         {
@@ -94,6 +93,6 @@ namespace QuanLyKhachSan.Models.Objects
                 };
             }
         }
-
     }
 }
+
