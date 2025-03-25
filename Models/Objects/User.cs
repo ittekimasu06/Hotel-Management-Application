@@ -41,7 +41,6 @@ namespace QuanLyKhachSan.Models.Objects
                 {
                     0 => "Quản lý",
                     1 => "Nhân viên",
-                    2 => "Khách hàng",
                     _ => "Không xác định"
                 };
             }

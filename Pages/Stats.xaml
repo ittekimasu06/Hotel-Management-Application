@@ -86,7 +86,7 @@
                             <Run Text="Biểu đồ" FontSize="16" FontWeight="Bold"/>
                             <Run Text="| Trong năm" Foreground="{DynamicResource PrimaryDarkTextColor}"/>
                         </TextBlock>
-                        <lvc:CartesianChart Series="{Binding SeriesCollection}" Height="220">
+                        <lvc:CartesianChart Series="{Binding SeriesCollection}" Height="220" LegendLocation="Right">
                             <lvc:CartesianChart.AxisX>
                                 <lvc:Axis Labels="{Binding Labels}" />
                             </lvc:CartesianChart.AxisX>

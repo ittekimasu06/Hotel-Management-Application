@@ -245,7 +245,7 @@ namespace QuanLyKhachSan.Pages
             txtPhoneError.Visibility = Visibility.Collapsed;
             txtPasswordError.Visibility = Visibility.Collapsed;
             txtRoleError.Visibility = Visibility.Collapsed;
-        }
-
+            UsersDataGrid.SelectedItem = null;
+        }   
     }
 }

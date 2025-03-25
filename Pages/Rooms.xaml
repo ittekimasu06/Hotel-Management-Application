@@ -57,7 +57,7 @@
                         <TextBlock x:Name="txtBedTypeError" Text="Loại giường không được để trống" VerticalAlignment="Center" Margin="10 0 0 0" Foreground="Red" FontSize="12" Visibility="Collapsed"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
-                        <TextBlock Text="Giá" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
+                        <TextBlock Text="Giá (VND)" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
                         <TextBox x:Name="txtPrice" Width="400" Style="{DynamicResource TextBoxStyle}" Tag="Giá"/>
                         <TextBlock x:Name="txtPriceError" Text="Giá không được để trống" VerticalAlignment="Center" Margin="10 0 0 0" Foreground="Red" FontSize="12" Visibility="Collapsed"/>
                     </StackPanel>
@@ -72,7 +72,7 @@
                         <TextBlock x:Name="txtRoomTypeError" Text="Loại phòng không được để trống" VerticalAlignment="Center" Margin="10 0 0 0" Foreground="Red" FontSize="12" Visibility="Collapsed"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
-                        <TextBlock Text="Diện tích" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
+                        <TextBlock Text="Diện tích (m²)" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
                         <TextBox x:Name="txtRoomArea" Width="400" Style="{DynamicResource TextBoxStyle}" Tag="Diện tích"/>
                         <TextBlock x:Name="txtRoomAreaError" Text="Diện tích không được để trống" VerticalAlignment="Center" Margin="10 0 0 0" Foreground="Red" FontSize="12" Visibility="Collapsed"/>
                     </StackPanel>
@@ -84,16 +84,16 @@
                         <Button x:Name="btnDelRoom" Content="Xóa" Width="120" Margin="0,0,10,0" Style="{DynamicResource SecondaryButtonStyle}" Click="BtnDelRoom_Click"/>
                         <Button x:Name="btnRefresh"  Content="Làm mới" Width="120" Margin="0,0,10,0" Style="{DynamicResource SecondaryButtonStyle}" Click="BtnRefresh_Click"/>
                     </StackPanel>
-                    <DataGrid x:Name="RoomsDataGrid" Margin="10" Height="200" AutoGenerateColumns="False" CanUserDeleteRows="False" CanUserSortColumns="False" CanUserAddRows="False" CanUserReorderColumns="False"  CanUserResizeColumns="False" SelectionChanged="RoomsDataGrid_SelectionChanged">
+                    <DataGrid x:Name="RoomsDataGrid" Margin="10" Height="200" SelectionChanged="RoomsDataGrid_SelectionChanged" Style="{DynamicResource DataGridStyle}">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ID" Binding="{Binding roomId}" Width="*" />
+                            <DataGridTextColumn Header="ID" Binding="{Binding roomId}" Width="50" />
                             <DataGridTextColumn Header="Số người" Binding="{Binding numberPeople}" Width="*" />
                             <DataGridTextColumn Header="Số giường" Binding="{Binding numberBed}" Width="*" />
                             <DataGridTextColumn Header="Chất lượng" Binding="{Binding QualityName}" Width="*"/>
                             <DataGridTextColumn Header="Loại giường" Binding="{Binding bedType}" Width="*" />
-                            <DataGridTextColumn Header="Giá" Binding="{Binding price}" Width="*" />
+                            <DataGridTextColumn Header="Giá (VND)" Binding="{Binding price}" Width="*" />
                             <DataGridTextColumn Header="Loại phòng" Binding="{Binding roomType}" Width="*" />
-                            <DataGridTextColumn Header="Diện tích" Binding="{Binding roomArea}" Width="*"/>
+                            <DataGridTextColumn Header="Diện tích (m²)" Binding="{Binding roomArea}" Width="*"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </StackPanel>

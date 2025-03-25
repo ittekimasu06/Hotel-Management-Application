@@ -45,7 +45,7 @@
                         Margin="40 0 0 0" Padding="10 5 0 5"
                         BorderBrush="{DynamicResource PrimaryBlueColor}" BorderThickness="4 0 0 0"/>
 
-                <StackPanel Grid.Row="3" Orientation="Vertical">
+                <StackPanel Grid.Row="3" Orientation="Vertical" Margin="10,0,0,0">
                     <!-- Thông tin chi tiết hóa đơn -->
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
                         <TextBlock Text="Email" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
@@ -71,8 +71,8 @@
                         <TextBlock Text="Số trẻ em" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
                         <TextBlock x:Name="txtSoTreEm" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryBlueColor}" FontSize="15" FontWeight="Bold"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="20,0,0,10">
-                        <TextBlock Text="Tổng tiền" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
+                    <StackPanel Orientation="Horizontal" Margin="20,10,0,10">
+                        <TextBlock Text="Tổng tiền" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15" FontWeight="Bold"/>
                         <TextBlock x:Name="txtTongTien" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryBlueColor}" FontSize="15" FontWeight="Bold"/>
                     </StackPanel>
 
@@ -87,7 +87,7 @@
                         <Button x:Name="btnRefresh" Content="Làm mới" VerticalAlignment="Center" Width="120" Margin="0,0,10,0" Style="{DynamicResource SecondaryButtonStyle}" Click="BtnRefresh_Click"/>
                         <Button x:Name="btnDelBill" Content="Xóa" VerticalAlignment="Center" Width="120" Margin="0,0,10,0" Style="{DynamicResource SecondaryButtonStyle}" Click="BtnDelBill_Click"/>
                     </StackPanel>
-                    <DataGrid  x:Name="BillsDataGrid" Margin="10" Height="200" AutoGenerateColumns="False" CanUserDeleteRows="False" CanUserSortColumns="False" CanUserAddRows="False" CanUserReorderColumns="False"  CanUserResizeColumns="False" SelectionChanged="BillsDataGrid_SelectionChanged">
+                    <DataGrid  x:Name="BillsDataGrid" Margin="10" Height="200" SelectionChanged="BillsDataGrid_SelectionChanged" Style="{DynamicResource DataGridStyle}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID" Binding="{Binding billId}" Width="40"/>
                             <DataGridTextColumn Header="Ngày tạo" Binding="{Binding createdAt}" Width="200"/>

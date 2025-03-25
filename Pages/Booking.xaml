@@ -55,7 +55,7 @@
                         <TextBlock Text="Chọn Phòng" Width="120" VerticalAlignment="Center" Foreground="{DynamicResource TextSecondaryColor}" FontSize="15"/>
                         <Button x:Name="btnChonPhong" Content="Chọn phòng" Width="120" Margin="0,0,0,0" Style="{DynamicResource PrimaryButtonStyle}" Click="BtnChonPhong_Click"/>
                         <Grid>
-                            <Rectangle Width="270" Height="40" Fill="{DynamicResource PrimaryBackgroundColor}" Margin="10,0,0,0"  Stroke="{DynamicResource PrimaryBlueColor}" StrokeThickness="2" RadiusX="5" RadiusY="5"/>
+                            <Rectangle Width="270" Height="40" Fill="{DynamicResource SecondaryBackgroundColor}" Margin="10,0,0,0"  Stroke="{DynamicResource PrimaryBlueColor}" StrokeThickness="2" RadiusX="5" RadiusY="5"/>
                             <Rectangle Width="24" Height="24" HorizontalAlignment="Right" Margin="0,0,5,0" Fill="{DynamicResource PrimaryBlueColor}" RadiusX="5" RadiusY="5"/>
                             <iconPacks:PackIconBootstrapIcons Width="18"
                                        Height="18"

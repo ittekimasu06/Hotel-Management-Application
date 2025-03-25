@@ -63,10 +63,10 @@
                     <StackPanel Grid.Row="3" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Center">
                         <RadioButton x:Name="rdHome" IsChecked="True" Content="Trang Chủ" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource home}" Click="rdHome_Click" />
                         <RadioButton x:Name="rdRooms" Content="Phòng" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource room}" Margin="2 5 0 5" Click="rdRooms_Click" />
-                        <RadioButton x:Name="rdBooking" Content="Đặt Phòng" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource booking}" Margin="2 5 0 5" Click="rdBooking_Click"  />
+                        <RadioButton x:Name="rdBooking" Content="Đặt Phòng" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource booking}" Margin="2 0 0 5" Click="rdBooking_Click"  />
                         <RadioButton x:Name="rdBills" Content="Hóa Đơn" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource notes }" Click="rdBills_Click"/>
                         <RadioButton x:Name="rdUsers" Content="Người dùng" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource users}" Margin="2 5 0 5" Click="rdUsers_Click"/>
-                        <RadioButton x:Name="rdStats" Content="Thống kê" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource stats}" Margin="2 5 0 5" Click="rdStats_Click" />
+                        <RadioButton x:Name="rdStats" Content="Thống kê" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource stats}" Margin="2 0 0 5" Click="rdStats_Click" />
                     </StackPanel>
 
                     <StackPanel Orientation="Vertical" Grid.Row="3" VerticalAlignment="Bottom" Width="200" Margin="0,0,0,0">
@@ -74,7 +74,7 @@
                         <StackPanel Grid.Row="3" VerticalAlignment="Bottom" Orientation="Horizontal" Width="200" Margin="0,0,0,20">
                             <Grid>
                                 <Ellipse Width="40" Height="40" Fill="{DynamicResource PrimaryBlueColor}" Margin="10,0,0,0"/>
-                                <iconPacks:PackIconBootstrapIcons Width="30" Height="30" 
+                                <iconPacks:PackIconBootstrapIcons Width="41" Height="41" 
                                             HorizontalAlignment="Center" 
                                             VerticalAlignment="Center" 
                                             Margin="10 0 0 0"
@@ -93,7 +93,7 @@
 
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="34"/>
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>

@@ -90,6 +90,8 @@ namespace QuanLyKhachSan.Pages
             txtSoNguoiLon.Text = "";
             txtSoTreEm.Text = "";
             txtTongTien.Text = "";
+            BillsDataGrid.SelectedItem = null;
         }
+
     }
 }

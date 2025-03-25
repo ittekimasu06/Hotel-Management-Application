@@ -44,9 +44,10 @@ namespace QuanLyKhachSan.Pages
         private void LoadStats(DateTime date)
         {
             var billsInMonth = _context.Bills
-                .Where(b => b.createdAt.Month == date.Month && b.createdAt.Year == date.Year)
+                .Where(b => b.createdAt.Month == date.Month && b.createdAt.Year == date.Year && (b.status == 1 || b.status == 3 || b.status == 4)) // 1 = da thanh toan, 3 = da nhan phong, 4 = da tra phong
                 .ToList();
 
+            ClearStats();
             if (billsInMonth.Any())
             {
                 // Phòng đặt nhiều nhất
@@ -60,7 +61,6 @@ namespace QuanLyKhachSan.Pages
                     txtPhongNhieu.Text = $"Phòng số {mostBookedRoom.Key}";
                     txtSoLan.Text = $"{mostBookedRoom.Count()} lần";
                 }
-
                 // Lợi nhuận
                 float totalRevenue = billsInMonth.Sum(b => b.total ?? 0);
                 txtLoiNhuan.Text = $"{totalRevenue} VND";
@@ -91,7 +91,7 @@ namespace QuanLyKhachSan.Pages
             };
 
             Labels = new[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" };
-            Formatter = value => $"{value}M";
+            Formatter = value => $"{Math.Round(value, 2)}M";
 
             DataContext = this;
         }
@@ -102,23 +102,30 @@ namespace QuanLyKhachSan.Pages
             var monthlyRevenue = new List<float>(new float[12]);
 
             var bills = _context.Bills
-                .Where(b => b.createdAt.Year == year && b.status == 1) // Status 1 = Paid
+                .Where(b => b.createdAt.Year == year && (b.status == 1 || b.status == 3 || b.status == 4)) // 1 = da thanh toan, 3 = da nhan phong, 4 = da tra phong
                 .GroupBy(b => b.createdAt.Month)
                 .Select(g => new { Month = g.Key, Total = g.Sum(b => b.total ?? 0) })
                 .ToList();
 
             foreach (var bill in bills)
             {
-                monthlyRevenue[bill.Month - 1] = bill.Total / 1_000_000f; // Quy đổi thành triệu
+                monthlyRevenue[bill.Month - 1] = bill.Total / 1_000_000f; 
             }
 
             return monthlyRevenue;
         }
 
-
         public SeriesCollection SeriesCollection { get; set; }
         public string[] Labels { get; set; }
         public Func<double, string> Formatter { get; set; }
+
+        private void ClearStats()
+        {
+            txtPhongNhieu.Text = "";
+            txtSoLan.Text = "";
+            txtLoiNhuan.Text = "";
+            txtThang.Text = "";
+        }
     }
 }
 

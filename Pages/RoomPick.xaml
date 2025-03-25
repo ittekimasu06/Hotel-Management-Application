@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuanLyKhachSan.Pages"
         mc:Ignorable="d"
-        Title="RoomPick" Height="450" Width="700"
+        Title="RoomPick" Height="480" Width="840"
         WindowStartupLocation="CenterScreen" WindowStyle="None"
         Background="Transparent" AllowsTransparency="True"
         ResizeMode="NoResize" WindowState="Normal"
@@ -45,16 +45,16 @@
                        BorderBrush="{DynamicResource PrimaryBlueColor}" BorderThickness="4 0 0 0"/>
                 
                 <!-- Bảng danh sách phòng -->
-                <DataGrid Grid.Row="1" x:Name="RoomsDataGrid" Margin="10" Height="200" AutoGenerateColumns="False" CanUserDeleteRows="False" CanUserSortColumns="False" CanUserAddRows="False" CanUserReorderColumns="False"  CanUserResizeColumns="False">
+                <DataGrid Grid.Row="1" x:Name="RoomsDataGrid" Margin="10" Height="200" Style="{DynamicResource DataGridStyle}">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID" Binding="{Binding roomId}" Width="*" />
+                        <DataGridTextColumn Header="ID" Binding="{Binding roomId}" Width="50" />
                         <DataGridTextColumn Header="Số người" Binding="{Binding numberPeople}" Width="*" />
                         <DataGridTextColumn Header="Số giường" Binding="{Binding numberBed}" Width="*" />
                         <DataGridTextColumn Header="Chất lượng" Binding="{Binding QualityName}" Width="*"/>
                         <DataGridTextColumn Header="Loại giường" Binding="{Binding bedType}" Width="*" />
-                        <DataGridTextColumn Header="Giá" Binding="{Binding price}" Width="*" />
+                        <DataGridTextColumn Header="Giá (VND)" Binding="{Binding price}" Width="*" />
                         <DataGridTextColumn Header="Loại phòng" Binding="{Binding roomType}" Width="*" />
-                        <DataGridTextColumn Header="Diện tích" Binding="{Binding roomArea}" Width="*"/>
+                        <DataGridTextColumn Header="Diện tích (m²)" Binding="{Binding roomArea}" Width="*"/>
                     </DataGrid.Columns>
                 </DataGrid>
 

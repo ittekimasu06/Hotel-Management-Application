@@ -247,6 +247,7 @@ namespace QuanLyKhachSan.Pages
             txtPrice.Clear();
             comboboxRoomType.SelectedIndex = -1;
             txtRoomArea.Clear();
+            RoomsDataGrid.SelectedItem = null;
         }
     }
 }
