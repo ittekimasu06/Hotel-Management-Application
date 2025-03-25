@@ -16,6 +16,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include=".github\workflows\qlks.yml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Assets\Images\img2.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

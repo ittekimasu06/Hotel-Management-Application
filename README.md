@@ -37,7 +37,7 @@ This is the .NET implementation of the hotel management system, called Keisho.
   <img src="Assets/Images/Demo/demo6.png" alt="Demo 6" width="400">
 </p>
 <p align="center">
-  <img src="Assets/Images/Demo/demo2.png" alt="Demo 2" width="400">">
+  <img src="Assets/Images/Demo/demo2.png" alt="Demo 2" width="400">
 </p>
 <p align="center">
   <img src="Assets/Images/Demo/demo3.png" alt="Demo 3" width="400">
