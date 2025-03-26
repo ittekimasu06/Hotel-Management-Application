@@ -3,16 +3,16 @@
 on:
   push:
     tags:
-      - 'qlks/v*'  
-  workflow_dispatch:  
+      - 'qlks/v*'
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: windows-latest
     env:
-      DOTNET_VERSION: '8.0'  # Phiên bản .NET
+      DOTNET_VERSION: '8.0'
       CONFIGURATION: 'Release'
-      CONNECTION_STRING: "Data source=(localDB)\\MSSQlLocalDB;AttachDbFilename=|DataDirectory|\\QuanLyKhachSan.mdf;Initial Catalog=DefaultConnection;Integrated Security=True"
+      CONNECTION_STRING: "Data source=(localDB)\\MSSQlLocalDB;AttachDbFilename=|DataDirectory|\\QuanLyKhachSan.mdf;Initial Catalog=DefaultConnection;Integrated Security=True" 
 
     steps:
       # Checkout source code
@@ -25,15 +25,17 @@ jobs:
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
+      # Cài đặt dotnet-ef tool
+      - name: Install dotnet-ef
+        run: dotnet tool install --global dotnet-ef
+        env:
+          PATH: ${{ runner.tool_cache }}\dotnet\tools\;${{ env.PATH }}  
+
       # Restore Dependencies
       - name: Restore Dependencies
         run: dotnet restore
 
-      # Build Project
-      - name: Build QLKS Application
-        run: dotnet build --configuration ${{ env.CONFIGURATION }}
-
-      # Apply EF Migrations
+      # Chạy Migration (EF Database Update)
       - name: Apply EF Migrations
         run: dotnet ef database update
         env:
