@@ -38,9 +38,11 @@ jobs:
       # Publish with Self-Contained and Single File
       - name: Publish QLKS Application
         run: |
-          dotnet publish -c ${{ env.CONFIGURATION }} \
-          -r win-x64 --self-contained true \
-          -p:PublishSingleFile=true -p:PublishTrimmed=true \
+          dotnet publish -c ${{ env.CONFIGURATION }} `
+          -r win-x64 `
+          --self-contained true `
+          -p:PublishSingleFile=true `
+          -p:PublishTrimmed=true `
           -o ./publish
 
       # Upload artifact for release
