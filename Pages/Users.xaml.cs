@@ -86,7 +86,7 @@ namespace QuanLyKhachSan.Pages
                 txtEmailError.Text = "Email quá 100 ký tự!";
                 hasError = true;
             }
-            else if (!Regex.IsMatch(txtEmail.Text, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"))
+            else if (!Regex.IsMatch(txtEmail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
             {
                 txtEmailError.Visibility = Visibility.Visible;
                 txtEmailError.Text = "Email không hợp lệ!";
