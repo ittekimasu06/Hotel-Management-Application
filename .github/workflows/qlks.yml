@@ -6,7 +6,7 @@ on:
       - "qlks/v*"
 
 env:
-  PROJECT_PATH: C:\Users\nguye\source\repos\QuanLyKhachSan
+  PROJECT_PATH: C:\Users\nguye\source\repos\QuanLyKhachSan\QuanLyKhachSan.csproj
 
 jobs:
   deploy:
