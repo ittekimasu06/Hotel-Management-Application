@@ -6,7 +6,7 @@ on:
       - "qlks/v*"
 
 env:
-  PROJECT_PATH: QuanLyKhachSan/QuanLyKhachSan.csproj
+  PROJECT_PATH: D:\a\Hotel-Management-Application\QuanLyKhachSan\QuanLyKhachSan.csproj
 
 jobs:
   deploy:
@@ -17,9 +17,6 @@ jobs:
       - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 8.0.x
-
-      - name: List all files
-        run: dir /s /b
 
       - name: Restore dependencies
         run: dotnet restore "${{ env.PROJECT_PATH }}"
