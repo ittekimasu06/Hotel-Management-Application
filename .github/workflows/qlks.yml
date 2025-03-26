@@ -42,11 +42,15 @@ jobs:
           -p:PublishSingleFile=true `
           -o ./publish
 
+      # Zip published files
       - name: Zip Published Files
         run: |
-          mkdir ./artifacts
-          cd ./publish
-          Compress-Archive -Path * -DestinationPath ../artifacts/QLKS_v${{ github.ref_name }}.zip
+         mkdir ./artifacts
+         cd ./publish
+         $tag = "${{ github.ref_name }}"
+         $tag = $tag -replace '/', '_'
+         Compress-Archive -Path * -DestinationPath ../artifacts/QLKS_$tag.zip
+
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
