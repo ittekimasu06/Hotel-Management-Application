@@ -41,111 +41,7 @@ namespace QuanLyKhachSan.Pages
 
         private void BtnAddUser_Click(object sender, RoutedEventArgs e)
         {
-            bool hasError = false;
-
-            if (string.IsNullOrWhiteSpace(txtUsername.Text))
-            {
-                txtUsernameError.Visibility = Visibility.Visible;
-                hasError = true;
-            }
-            else if (txtUsername.Text.Length >= 50)
-            {
-                txtUsernameError.Visibility = Visibility.Visible;
-                txtUsernameError.Text = "Tên đăng nhập quá 50 ký tự";
-                hasError = true;
-            }
-            else
-            {
-                txtUsernameError.Visibility = Visibility.Collapsed;
-            }
-
-            if (string.IsNullOrWhiteSpace(txtFullName.Text))
-            {
-                txtFullNameError.Visibility = Visibility.Visible;
-                hasError = true;
-            }
-            else if (txtFullName.Text.Length >= 50)
-            {
-                txtFullNameError.Visibility = Visibility.Visible;
-                txtFullNameError.Text = "Họ tên quá 50 ký tự";
-                hasError = true;
-            }
-            else
-            {
-                txtFullNameError.Visibility = Visibility.Collapsed;
-            }
-
-            if (string.IsNullOrWhiteSpace(txtEmail.Text))
-            {
-                txtEmailError.Visibility = Visibility.Visible;
-                hasError = true;
-            }
-            else if (txtEmail.Text.Length >= 100)
-            {
-                txtEmailError.Visibility = Visibility.Visible;
-                txtEmailError.Text = "Email quá 100 ký tự!";
-                hasError = true;
-            }
-            else if (!Regex.IsMatch(txtEmail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
-            {
-                txtEmailError.Visibility = Visibility.Visible;
-                txtEmailError.Text = "Email không hợp lệ!";
-                hasError = true;
-            }
-            else
-            {
-                txtEmailError.Visibility = Visibility.Collapsed;
-            }
-
-            if (string.IsNullOrWhiteSpace(txtPhone.Text))
-            {
-                txtPhoneError.Visibility = Visibility.Visible;
-                hasError = true;
-            }
-            else if (txtPhone.Text.Length >= 12)
-            {
-                txtPhoneError.Visibility = Visibility.Visible;
-                txtPhoneError.Text = "Số điện thoại quá 12 ký tự!";
-                hasError = true;
-            }
-            else if (!Regex.IsMatch(txtPhone.Text, @"^0\d{9,10}$"))
-            {
-                txtPhoneError.Visibility = Visibility.Visible;
-                txtPhoneError.Text = "Số điện thoại không hợp lệ!";
-                hasError = true;
-            }
-            else
-            {
-                txtPhoneError.Visibility = Visibility.Collapsed;
-            }
-
-            if (string.IsNullOrWhiteSpace(txtPassword.Password))
-            {
-                txtPasswordError.Visibility = Visibility.Visible;
-                hasError = true;
-            }
-            else if (txtPassword.Password.Length < 6)
-            {
-                txtPasswordError.Visibility = Visibility.Visible;
-                txtPasswordError.Text = "Mật khẩu phải có ít nhất 6 ký tự!";
-                hasError = true;
-            }
-            else
-            {
-                txtPasswordError.Visibility = Visibility.Collapsed;
-            }
-
-            if (comboboxRole.SelectedItem == null)
-            {
-                txtRoleError.Visibility = Visibility.Visible;
-                hasError = true;
-            }
-            else
-            {
-                txtRoleError.Visibility = Visibility.Collapsed;
-            }
-
-            if (hasError)
+            if (!ValidateUserForm())
             {
                 return;
             }
@@ -159,12 +55,13 @@ namespace QuanLyKhachSan.Pages
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(txtPassword.Password),
                 Role = int.Parse(((ComboBoxItem)comboboxRole.SelectedItem).Tag.ToString())
             };
-            Notification notification = new Notification("Thành công", "Tạo tài khoản thành công");
-            notification.Owner = Window.GetWindow(this);
-            notification.Show();
+
             _context.Users.Add(user);
             _context.SaveChanges();
             users.Add(user);
+            Notification notification = new Notification("Thành công", "Tạo tài khoản thành công");
+            notification.Owner = Window.GetWindow(this);
+            notification.Show();
             ClearForm();
         }
 
@@ -172,19 +69,27 @@ namespace QuanLyKhachSan.Pages
         {
             if (UsersDataGrid.SelectedItem is User selectedUser)
             {
+                if (!ValidateUserForm())
+                {
+                    return;
+                }
+
                 selectedUser.Username = txtUsername.Text;
                 selectedUser.FullName = txtFullName.Text;
                 selectedUser.Email = txtEmail.Text;
                 selectedUser.Phone = txtPhone.Text;
+
+                // Cập nhật mật khẩu nếu thay đổi
                 if (txtPassword.Password != "current password")
                 {
                     selectedUser.PasswordHash = BCrypt.Net.BCrypt.HashPassword(txtPassword.Password);
                 }
+
                 selectedUser.Role = int.Parse(((ComboBoxItem)comboboxRole.SelectedItem).Tag.ToString());
+                _context.SaveChanges();
                 Notification notification = new Notification("Thành công", "Cập nhật tài khoản thành công");
                 notification.Owner = Window.GetWindow(this);
                 notification.Show();
-                _context.SaveChanges();
                 UsersDataGrid.Items.Refresh();
                 ClearForm();
             }
@@ -202,6 +107,127 @@ namespace QuanLyKhachSan.Pages
                 users.Remove(selectedUser);
                 ClearForm();
             }
+        }
+
+        private bool ValidateUserForm()
+        {
+            bool hasError = false;
+
+            // Username
+            if (string.IsNullOrWhiteSpace(txtUsername.Text))
+            {
+                txtUsernameError.Text = "Vui lòng nhập tên đăng nhập";
+                txtUsernameError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else if (txtUsername.Text.Length >= 50)
+            {
+                txtUsernameError.Text = "Tên đăng nhập quá 50 ký tự";
+                txtUsernameError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else
+            {
+                txtUsernameError.Visibility = Visibility.Collapsed;
+            }
+
+            // Full Name
+            if (string.IsNullOrWhiteSpace(txtFullName.Text))
+            {
+                txtFullNameError.Text = "Vui lòng nhập họ tên";
+                txtFullNameError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else if (txtFullName.Text.Length >= 50)
+            {
+                txtFullNameError.Text = "Họ tên quá 50 ký tự";
+                txtFullNameError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else
+            {
+                txtFullNameError.Visibility = Visibility.Collapsed;
+            }
+
+            // Email
+            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            {
+                txtEmailError.Text = "Vui lòng nhập email";
+                txtEmailError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else if (txtEmail.Text.Length >= 100)
+            {
+                txtEmailError.Text = "Email quá 100 ký tự!";
+                txtEmailError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else if (!Regex.IsMatch(txtEmail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                txtEmailError.Text = "Email không hợp lệ!";
+                txtEmailError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else
+            {
+                txtEmailError.Visibility = Visibility.Collapsed;
+            }
+
+            // Phone
+            if (string.IsNullOrWhiteSpace(txtPhone.Text))
+            {
+                txtPhoneError.Text = "Vui lòng nhập số điện thoại";
+                txtPhoneError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else if (txtPhone.Text.Length >= 12)
+            {
+                txtPhoneError.Text = "Số điện thoại quá 12 ký tự!";
+                txtPhoneError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else if (!Regex.IsMatch(txtPhone.Text, @"^0\d{9,10}$"))
+            {
+                txtPhoneError.Text = "Số điện thoại không hợp lệ!";
+                txtPhoneError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else
+            {
+                txtPhoneError.Visibility = Visibility.Collapsed;
+            }
+
+            // Password (Chỉ kiểm tra trong BtnAddUser hoặc khi có thay đổi)
+            if (string.IsNullOrWhiteSpace(txtPassword.Password))
+            {
+                txtPasswordError.Text = "Vui lòng nhập mật khẩu";
+                txtPasswordError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else if (txtPassword.Password.Length < 6)
+            {
+                txtPasswordError.Text = "Mật khẩu phải có ít nhất 6 ký tự!";
+                txtPasswordError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else
+            {
+                txtPasswordError.Visibility = Visibility.Collapsed;
+            }
+
+            // Role
+            if (comboboxRole.SelectedItem == null)
+            {
+                txtRoleError.Text = "Vui lòng chọn vai trò";
+                txtRoleError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else
+            {
+                txtRoleError.Visibility = Visibility.Collapsed;
+            }
+
+            return !hasError;
         }
 
         private void UsersDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

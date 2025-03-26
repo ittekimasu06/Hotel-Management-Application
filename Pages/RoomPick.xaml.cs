@@ -65,7 +65,9 @@ namespace QuanLyKhachSan.Pages
             }
             else
             {
-                MessageBox.Show("Hãy chọn một phòng.");
+                NotificationError notification = new NotificationError("Thất bại", "Hãy chọn một phòng");
+                notification.Owner = Window.GetWindow(this);
+                notification.Show();
             }
         }
 

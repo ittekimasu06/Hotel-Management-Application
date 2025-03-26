@@ -40,103 +40,7 @@ namespace QuanLyKhachSan.Pages
 
         private void BtnAddRoom_Click(object sender, RoutedEventArgs e)
         {
-            bool hasError = false;
-
-            if (string.IsNullOrWhiteSpace(txtNumberPeople.Text))
-            {
-                txtNumberPeopleError.Visibility = Visibility.Visible;
-                hasError = true;
-            } 
-            else if (!int.TryParse(txtNumberPeople.Text, out int numberPeople) || numberPeople < 1)
-            {
-                txtNumberPeopleError.Visibility = Visibility.Visible;
-                txtNumberPeopleError.Text = "Số người phải là số nguyên dương";
-                hasError = true;
-            }
-            else
-            {
-                txtNumberPeopleError.Visibility = Visibility.Collapsed;
-            }
-
-            if (string.IsNullOrWhiteSpace(txtNumberBed.Text))
-            {
-                txtNumberBedError.Visibility = Visibility.Visible;
-                hasError = true;
-            }
-            else if (!int.TryParse(txtNumberBed.Text, out int numberBed) || numberBed < 1)
-            {
-                txtNumberBedError.Visibility = Visibility.Visible;
-                txtNumberBedError.Text = "Số giường phải là số nguyên dương";
-                hasError = true;
-            }
-            else
-            {
-                txtNumberBedError.Visibility = Visibility.Collapsed;
-            }
-
-            if (comboboxQuality.SelectedIndex == -1)
-            {
-                txtQualityError.Visibility = Visibility.Visible;
-                hasError = true;
-            }
-            else
-            {
-                txtQualityError.Visibility = Visibility.Collapsed;
-            }
-
-            if (comboboxBedType.SelectedIndex == -1)
-            {
-                txtBedTypeError.Visibility = Visibility.Visible;
-                hasError = true;
-            }
-            else
-            {
-                txtBedTypeError.Visibility = Visibility.Collapsed;
-            }
-
-            if (string.IsNullOrWhiteSpace(txtPrice.Text))
-            {
-                txtPriceError.Visibility = Visibility.Visible;
-                hasError = true;
-            }
-            else if (!float.TryParse(txtPrice.Text, out float price) || price < 0)
-            {
-                txtPriceError.Visibility = Visibility.Visible;
-                txtPriceError.Text = "Giá phải là số dương";
-                hasError = true;
-            }
-            else
-            {
-                txtPriceError.Visibility = Visibility.Collapsed;
-            }
-
-            if (comboboxRoomType.SelectedIndex == -1)
-            {
-                txtRoomTypeError.Visibility = Visibility.Visible;
-                hasError = true;
-            }
-            else
-            {
-                txtRoomTypeError.Visibility = Visibility.Collapsed;
-            }
-
-            if (string.IsNullOrWhiteSpace(txtRoomArea.Text))
-            {
-                txtRoomAreaError.Visibility = Visibility.Visible;
-                hasError = true;
-            }
-            else if (!float.TryParse(txtRoomArea.Text, out float roomArea) || roomArea < 0)
-            {
-                txtRoomAreaError.Visibility = Visibility.Visible;
-                txtRoomAreaError.Text = "Diện tích phải là số dương";
-                hasError = true;
-            }
-            else
-            {
-                txtRoomAreaError.Visibility = Visibility.Collapsed;
-            }
-
-            if (hasError)
+            if (!ValidateRoomForm())
             {
                 return;
             }
@@ -151,20 +55,26 @@ namespace QuanLyKhachSan.Pages
                 roomType = ((ComboBoxItem)comboboxRoomType.SelectedItem).Tag.ToString(),
                 roomArea = float.Parse(txtRoomArea.Text)
             };
+
             _context.Rooms.Add(room);
             _context.SaveChanges();
             rooms.Add(room);
             ClearForm();
+
             Notification notification = new Notification("Thành công", "Tạo phòng thành công");
             notification.Owner = Window.GetWindow(this);
             notification.Show();
         }
 
-
         private void BtnUpdateRoom_Click(object sender, RoutedEventArgs e)
         {
             if (RoomsDataGrid.SelectedItem is Room selectedRoom)
             {
+                if (!ValidateRoomForm())
+                {
+                    return;
+                }
+
                 selectedRoom.numberPeople = int.Parse(txtNumberPeople.Text);
                 selectedRoom.numberBed = int.Parse(txtNumberBed.Text);
                 selectedRoom.quality = int.Parse(((ComboBoxItem)comboboxQuality.SelectedItem).Tag.ToString());
@@ -172,9 +82,11 @@ namespace QuanLyKhachSan.Pages
                 selectedRoom.price = float.Parse(txtPrice.Text);
                 selectedRoom.roomType = ((ComboBoxItem)comboboxRoomType.SelectedItem).Tag.ToString();
                 selectedRoom.roomArea = float.Parse(txtRoomArea.Text);
+
                 _context.SaveChanges();
                 LoadRooms();
                 ClearForm();
+
                 Notification notification = new Notification("Thành công", "Cập nhật phòng thành công");
                 notification.Owner = Window.GetWindow(this);
                 notification.Show();
@@ -199,6 +111,102 @@ namespace QuanLyKhachSan.Pages
                 ClearForm();
             }
         }
+
+        private bool ValidateRoomForm()
+        {
+            bool hasError = false;
+
+            // Số người
+            if (string.IsNullOrWhiteSpace(txtNumberPeople.Text) ||
+                !int.TryParse(txtNumberPeople.Text, out int numberPeople) || numberPeople < 1)
+            {
+                txtNumberPeopleError.Text = "Số người phải là số nguyên dương";
+                txtNumberPeopleError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else
+            {
+                txtNumberPeopleError.Visibility = Visibility.Collapsed;
+            }
+
+            // Số giường
+            if (string.IsNullOrWhiteSpace(txtNumberBed.Text) ||
+                !int.TryParse(txtNumberBed.Text, out int numberBed) || numberBed < 1)
+            {
+                txtNumberBedError.Text = "Số giường phải là số nguyên dương";
+                txtNumberBedError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else
+            {
+                txtNumberBedError.Visibility = Visibility.Collapsed;
+            }
+
+            // Chất lượng
+            if (comboboxQuality.SelectedIndex == -1)
+            {
+                txtQualityError.Text = "Vui lòng chọn chất lượng";
+                txtQualityError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else
+            {
+                txtQualityError.Visibility = Visibility.Collapsed;
+            }
+
+            // Loại giường
+            if (comboboxBedType.SelectedIndex == -1)
+            {
+                txtBedTypeError.Text = "Vui lòng chọn loại giường";
+                txtBedTypeError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else
+            {
+                txtBedTypeError.Visibility = Visibility.Collapsed;
+            }
+
+            // Giá phòng
+            if (string.IsNullOrWhiteSpace(txtPrice.Text) ||
+                !float.TryParse(txtPrice.Text, out float price) || price < 0)
+            {
+                txtPriceError.Text = "Giá phải là số dương";
+                txtPriceError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else
+            {
+                txtPriceError.Visibility = Visibility.Collapsed;
+            }
+
+            // Loại phòng
+            if (comboboxRoomType.SelectedIndex == -1)
+            {
+                txtRoomTypeError.Text = "Vui lòng chọn loại phòng";
+                txtRoomTypeError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else
+            {
+                txtRoomTypeError.Visibility = Visibility.Collapsed;
+            }
+
+            // Diện tích phòng
+            if (string.IsNullOrWhiteSpace(txtRoomArea.Text) ||
+                !float.TryParse(txtRoomArea.Text, out float roomArea) || roomArea < 0)
+            {
+                txtRoomAreaError.Text = "Diện tích phải là số dương";
+                txtRoomAreaError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else
+            {
+                txtRoomAreaError.Visibility = Visibility.Collapsed;
+            }
+
+            return !hasError;
+        }
+
 
         private void RoomsDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
