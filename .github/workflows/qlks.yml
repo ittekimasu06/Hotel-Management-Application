@@ -25,21 +25,14 @@ jobs:
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
-      # Cài đặt dotnet-ef tool
-      - name: Install dotnet-ef
-        run: dotnet tool install --global dotnet-ef
-        env:
-          PATH: ${{ runner.tool_cache }}\dotnet\tools\;${{ env.PATH }}  
-
       # Restore Dependencies
       - name: Restore Dependencies
         run: dotnet restore
 
-      # Chạy Migration (EF Database Update)
-      - name: Apply EF Migrations
-        run: dotnet ef database update
+      # Chạy Migration (EF6 Update-Database)
+      - name: Apply EF6 Migrations
+        run: powershell ./update-database.ps1
         env:
-          DOTNET_ENVIRONMENT: "Production"
           ConnectionStrings__DefaultConnection: ${{ env.CONNECTION_STRING }}
 
       # Publish with Self-Contained and Single File
