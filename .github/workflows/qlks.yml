@@ -6,13 +6,15 @@ on:
       - "qlks/v*"
 
 env:
-  PROJECT_PATH: QuanLyKhachSan/QuanLyKhachSan.csproj
+  PROJECT_PATH: ${{ github.workspace }}/QuanLyKhachSan/QuanLyKhachSan.csproj
 
 jobs:
   deploy:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-dotnet@v1
         with:
