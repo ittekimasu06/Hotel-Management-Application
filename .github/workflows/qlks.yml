@@ -6,36 +6,34 @@ on:
       - 'qlks/v*'
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: windows-latest
     env:
-      DOTNET_VERSION: '8.0'
+      DOTNET_VERSION: '7.0'
       CONFIGURATION: 'Release'
-      CONNECTION_STRING: "Data source=(localDB)\\MSSQlLocalDB;AttachDbFilename=|DataDirectory|\\QuanLyKhachSan.mdf;Initial Catalog=DefaultConnection;Integrated Security=True" 
+      CONNECTION_STRING: "Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=QLKS;Integrated Security=True;"
 
     steps:
-      # Checkout source code
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      # Setup .NET SDK
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
-      # Restore Dependencies
       - name: Restore Dependencies
         run: dotnet restore
 
-      # Chạy Migration (EF6 Update-Database)
       - name: Apply EF6 Migrations
         run: powershell ./update-database.ps1
         env:
           ConnectionStrings__DefaultConnection: ${{ env.CONNECTION_STRING }}
 
-      # Publish with Self-Contained and Single File
       - name: Publish QLKS Application
         run: |
           dotnet publish -c ${{ env.CONFIGURATION }} `
@@ -44,14 +42,12 @@ jobs:
           -p:PublishSingleFile=true `
           -o ./publish
 
-      # Upload artifact for release
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: qlks-app
           path: ./publish/
 
-      # Create GitHub Release
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         env:
