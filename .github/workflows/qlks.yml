@@ -1,56 +1,63 @@
-﻿name: Deploy QLKS App
+﻿name: Build and Release QLKS
 
 on:
   push:
     tags:
       - 'qlks/v*'
-  workflow_dispatch:
-
-permissions:
-  contents: write
 
 jobs:
   build:
     runs-on: windows-latest
-    env:
-      DOTNET_VERSION: '7.0'
-      CONFIGURATION: 'Release'
-      CONNECTION_STRING: "Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=QLKS;Integrated Security=True;"
 
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
+      # Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
+      # Setup .NET
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: ${{ env.DOTNET_VERSION }}
+          dotnet-version: 6.0
 
-      - name: Restore Dependencies
-        run: dotnet restore
+      # Restore dependencies
+      - name: Restore dependencies
+        run: dotnet restore QuanLyKhachSan.sln
 
-      - name: Apply EF6 Migrations
-        run: powershell ./update-database.ps1
-        env:
-          ConnectionStrings__DefaultConnection: ${{ env.CONNECTION_STRING }}
+      # Build Application
+      - name: Build QLKS Application
+        run: dotnet build QuanLyKhachSan.sln -c Release --no-restore
 
+      # Publish Application
       - name: Publish QLKS Application
         run: |
-          dotnet publish -c ${{ env.CONFIGURATION }} `
-          -r win-x64 `
-          --self-contained true `
-          -p:PublishSingleFile=true `
+          dotnet publish QuanLyKhachSan.sln -c Release -r win-x64 \
+          --self-contained true \
+          --publish-single-file true \
+          /p:PublishTrimmed=false \
+          /p:IncludeNativeLibrariesForSelfExtract=true \
           -o ./publish
 
-      - name: Upload Artifact
+      # Zip published files
+      - name: Zip Published Files
+        run: |
+          mkdir ./artifacts
+          cd ./publish
+          Compress-Archive -Path * -DestinationPath ../artifacts/QLKS_v${{ github.ref_name }}.zip
+
+      # Upload artifact to GitHub
+      - name: Upload Release Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: qlks-app
-          path: ./publish/
+          name: QLKS_v${{ github.ref_name }}
+          path: ./artifacts/QLKS_v${{ github.ref_name }}.zip
 
+      # Create GitHub Release
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          files: ./publish/**
+          files: ./artifacts/QLKS_v${{ github.ref_name }}.zip
