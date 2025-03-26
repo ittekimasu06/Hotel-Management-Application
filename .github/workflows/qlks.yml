@@ -6,7 +6,7 @@ on:
       - "qlks/v*"
 
 env:
-  PROJECT_PATH: D:\a\Hotel-Management-Application\QuanLyKhachSan\QuanLyKhachSan.csproj
+  PROJECT_PATH: D:\a\Hotel-Management-Application\QuanLyKhachSan.csproj
 
 jobs:
   deploy:
