@@ -134,7 +134,7 @@ namespace QuanLyKhachSan.Pages
 
             if (_context.Users.Any(u => u.Username == username))
             {
-                NotificationError notification = new NotificationError("Thất bại", "Tài khoản đã tồn tại");
+                NotificationError notification = new NotificationError("Thất bại", "Tên đăng nhập đã tồn tại");
                 notification.Owner = this;
                 notification.Show();
                 return;

@@ -17,6 +17,8 @@ namespace QuanLyKhachSan
     /// </summary>
     public partial class MainWindow : Window
     {
+        public string CurrentUsername { get; private set; }
+        public string CurrentEmail { get; private set; }
         public MainWindow()
         {
             InitializeComponent();
@@ -68,7 +70,8 @@ namespace QuanLyKhachSan
         private void rdUsers_Click(object sender, RoutedEventArgs e)
         {
             placeHolder.Visibility = Visibility.Collapsed;
-            PagesNavigation.Navigate(new System.Uri("Pages/Users.xaml", UriKind.RelativeOrAbsolute));
+            var usersPage = new Users(CurrentUsername, CurrentEmail);
+            PagesNavigation.Navigate(usersPage);
         }
 
         private void rdStats_Click(object sender, RoutedEventArgs e)
@@ -87,11 +90,13 @@ namespace QuanLyKhachSan
         public void SetUsername(string username)
         {
             txtUsername.Text = username;
+            CurrentUsername = username;
         }
         //set txtEmail.Text = currently logged in user
         public void SetEmail(string email)
         {
             txtEmail.Text = email;
+            CurrentEmail = email;
         }
 
         private void rdLogout_Click(object sender, RoutedEventArgs e)

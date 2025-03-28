@@ -26,10 +26,19 @@ namespace QuanLyKhachSan.Pages
     {
         private ObservableCollection<User> users;
         private readonly DatabaseContext _context = new DatabaseContext();
+        private readonly string currentUsername;
+        private readonly string currentEmail;
 
         public Users()
         {
             InitializeComponent();
+            LoadUsers();
+        }
+        public Users(string username, string email)
+        {
+            InitializeComponent();
+            currentUsername = username;
+            currentEmail = email;
             LoadUsers();
         }
 
@@ -99,6 +108,16 @@ namespace QuanLyKhachSan.Pages
         {
             if (UsersDataGrid.SelectedItem is User selectedUser)
             {
+                
+                // Không cho phép xóa tài khoản đang đăng nhập
+                if(selectedUser.Username == currentUsername && selectedUser.Email == currentEmail)
+                {
+                    NotificationError notification1 = new NotificationError("Thất bại", "Không thể xóa tài khoản đang đăng nhập");
+                    notification1.Owner = Window.GetWindow(this);
+                    notification1.Show();
+                    return;
+                }
+
                 Notification notification = new Notification("Thành công", "Xóa tài khoản thành công");
                 notification.Owner = Window.GetWindow(this);
                 notification.Show();
@@ -123,6 +142,12 @@ namespace QuanLyKhachSan.Pages
             else if (txtUsername.Text.Length >= 50)
             {
                 txtUsernameError.Text = "Tên đăng nhập quá 50 ký tự";
+                txtUsernameError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else if (_context.Users.Any(u => u.Username == txtUsername.Text))
+            {
+                txtUsernameError.Text = "Tên đăng nhập đã tồn tại";
                 txtUsernameError.Visibility = Visibility.Visible;
                 hasError = true;
             }

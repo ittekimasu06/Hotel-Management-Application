@@ -29,7 +29,6 @@ namespace QuanLyKhachSan.Pages
         {
             InitializeComponent();
             dateThoiGian.SelectedDateChanged += DateThoiGian_SelectedDateChanged;
-            LoadChart();
         }
 
         private void DateThoiGian_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
@@ -38,6 +37,7 @@ namespace QuanLyKhachSan.Pages
             {
                 DateTime selectedDate = dateThoiGian.SelectedDate.Value;
                 LoadStats(selectedDate);
+                LoadChart();
             }
         }
 
